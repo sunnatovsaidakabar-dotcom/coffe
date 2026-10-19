@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduCenter Academy — Zamonaviy IT, Dizayn va Tillar Akademiyasi</title>
+  <meta name="description" content="EduCenter Academy — Kelajak kasblarini professional mentorlardan o'rganing. Dasturlash, Dizayn, IELTS va Xorijiy tillar kurslari.">
+  <meta property="og:title" content="EduCenter Academy — Kelajak kasblari">
+  <meta property="og:description" content="0 dan boshlab amaliy loyihalar orqali o'rganing. Diplom va xalqaro sertifikat.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" id="brandLogo">
+        <div class="logo-badge">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link active" data-i18n="nav_home">Bosh sahifa</a>
+        <a href="courses.html" class="nav-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
+        <a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
+        <a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Saralanganlar</a>
+        <a href="cart.html" class="nav-link" data-i18n="nav_cart">Savatcha</a>
+      </nav>
+
+      <!-- Action Tools -->
+      <div class="header-actions">
+        <!-- Global Search Button -->
+        <button class="icon-btn" id="globalSearchBtn" title="Qidiruv">
+          <i class="fas fa-search"></i>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="lang-selector">
+          <button class="lang-btn" id="langSelectorBtn" title="Tilni tanlash">
+            <i class="fas fa-globe"></i>
+            <span id="currentLangLabel">UZ</span>
+            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-item active" data-lang="uz">🇺🇿 O'zbekcha</button>
+            <button class="lang-item" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-item" data-lang="en">🇬🇧 English</button>
+          </div>
+        </div>
+
+        <!-- Dark/Light Mode Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" title="Mavzuni almashtirish">
+          <i class="fas fa-sun theme-toggle-icon"></i>
+        </button>
+
+        <!-- Favorites Icon -->
+        <a href="favorites.html" class="icon-btn" title="Saralanganlar">
+          <i class="fas fa-heart"></i>
+          <span class="counter-badge fav-count-badge" style="display: none;">0</span>
+        </a>
+
+        <!-- Cart Icon -->
+        <a href="cart.html" class="icon-btn" title="Savatcha">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="counter-badge cart-count-badge" style="display: none;">0</span>
+        </a>
+
+        <!-- Mobile Burger -->
+        <button class="mobile-toggle" id="mobileMenuToggle" title="Menyu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main>
+    <section class="hero-section">
+      <div class="hero-glow-bg"></div>
+      <div class="hero-glow-bg-2"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-pill">
+            <span data-i18n="hero_badge">🔥 2025/2026 yangi mavsum qabuli ochiq!</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-title-highlight" data-i18n="hero_title">Kelajak kasblarini professional ustozlardan o'rganing</span>
+          </h1>
+          <p class="hero-desc" data-i18n="hero_desc">
+            Dasturlash, dizayn, xorijiy tillar va biznes yo'nalishlarida 0 dan boshlab amaliy loyihalar orqali o'rganing. Diplom va xalqaro sertifikat beriladi.
+          </p>
+          <div class="hero-cta-group">
+            <a href="courses.html" class="btn btn-primary btn-lg" data-i18n="hero_btn_explore">
+              <i class="fas fa-compass"></i> Barcha kurslar
+            </a>
+            <a href="#consultationSection" class="btn btn-secondary btn-lg" data-i18n="hero_btn_consult">
+              <i class="fas fa-phone-alt"></i> Bepul maslahat
+            </a>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat-card">
+              <span class="stat-number">4,500+</span>
+              <span class="stat-label" data-i18n="hero_stat_students">Muvaffaqiyatli talaba</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="stat-number">15+</span>
+              <span class="stat-label" data-i18n="hero_stat_courses">Zamonaviy kurslar</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="stat-number">92%</span>
+              <span class="stat-label" data-i18n="hero_stat_employment">Ish bilan ta'minlash</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="stat-number">30+</span>
+              <span class="stat-label" data-i18n="hero_stat_mentors">Tajribali mentorlar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card-stack">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Students learning" class="hero-main-img">
+            
+            <div class="floating-card floating-card-1">
+              <div class="floating-icon" style="background: linear-gradient(135deg, #10B981, #059669);">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem;">92% Ishga Joylashish</div>
+                <div style="font-size: 0.8rem; color: var(--text-subtle);">Kafolatlangan kouching</div>
+              </div>
+            </div>
+
+            <div class="floating-card floating-card-2">
+              <div class="floating-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">
+                <i class="fas fa-award"></i>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem;">Xalqaro Sertifikat</div>
+                <div style="font-size: 0.8rem; color: var(--text-subtle);">CV va Portfolio</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="features_title">Nega aynan biz?</span>
+          <h2 class="section-title" data-i18n="features_subtitle">Zamonaviy ta'lim standarti va individual yondashuv</h2>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="feature-title" data-i18n="feat_1_title">Amaliyotga asoslangan ta'lim</h3>
+            <p class="feature-desc" data-i18n="feat_1_desc">Darslarning 80% qismi real portfolio loyihalari ustida ishlash bilan o'tadi.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box" style="background: linear-gradient(135deg, #10B981, #047857);">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h3 class="feature-title" data-i18n="feat_2_title">Kafolatlangan kouching</h3>
+            <p class="feature-desc" data-i18n="feat_2_desc">O'qish davrida va bitirgach rezyume tayyorlash va ishga joylashishda yordam beramiz.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3 class="feature-title" data-i18n="feat_3_title">Xalqaro sertifikat</h3>
+            <p class="feature-desc" data-i18n="feat_3_desc">Har bir bosqich yakunida ish beruvchilar tomonidan tan olinadigan sertifikat beriladi.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box" style="background: linear-gradient(135deg, #EC4899, #BE185D);">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <h3 class="feature-title" data-i18n="feat_4_title">Koworking va darsxona</h3>
+            <p class="feature-desc" data-i18n="feat_4_desc">Talabalarimiz uchun 24/7 zamonaviy koworking va tezyurar internet bepul.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPULAR COURSES SECTION -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; text-align: left; max-width: 100%;">
+          <div>
+            <span class="section-tag" data-i18n="popular_courses_title">Ommabop dasturlar</span>
+            <h2 class="section-title" data-i18n="popular_courses_subtitle">Eng talabgir yo'nalishlar bo'yicha saralangan dasturlar</h2>
+          </div>
+          <a href="courses.html" class="btn btn-outline" data-i18n="view_all_courses">Barcha kurslarni ko'rish →</a>
+        </div>
+
+        <div class="courses-grid" id="homeCoursesGrid">
+          <!-- Kurslar JS orqali avtomatik joylanadi -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSULTATION & TELEGRAM LEAD SECTION -->
+    <section class="section section-alt" id="consultationSection">
+      <div class="container">
+        <div class="consultation-box">
+          <div>
+            <span class="badge-tag" style="position: static; margin-bottom: 12px; display: inline-block;">100% BEPUL KONSULTATSIYA</span>
+            <h2 class="section-title" data-i18n="consult_title" style="margin-bottom: 1rem;">Qaysi kasbni tanlashda ikkilanyapsizmi?</h2>
+            <p class="section-subtitle" data-i18n="consult_subtitle" style="text-align: left; margin-bottom: 2rem;">
+              Raqamingizni qoldiring, mutaxassisimiz bepul yo'nalish tanlab beradi va 1-bepul sinov darsiga yozadi.
+            </p>
+            <div style="display: flex; gap: 20px; align-items: center; color: var(--text-muted); font-size: 0.95rem;">
+              <div><i class="fas fa-clock" style="color: var(--primary);"></i> 10 daqiqada aloqa</div>
+              <div><i class="fab fa-telegram" style="color: #229ED9;"></i> Telegram bot integratsiyasi</div>
+            </div>
+          </div>
+
+          <div class="consult-form">
+            <form id="homeConsultForm">
+              <div class="form-group">
+                <label class="form-label" for="consultName" data-i18n="form_name">Ism va Familiyangiz *</label>
+                <input type="text" id="consultName" class="form-control" placeholder="Said Ahmedov" data-i18n-ph="form_name_placeholder" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="consultPhone" data-i18n="form_phone">Telefon raqamingiz *</label>
+                <input type="tel" id="consultPhone" class="form-control" placeholder="+998 90 123 45 67" data-i18n-ph="form_phone_placeholder" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;" data-i18n="consult_btn">
+                <i class="fas fa-paper-plane"></i> Bepul darsga yozilish
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / REVIEWS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">O'quvchilar fikri</span>
+          <h2 class="section-title">Bitiruvchilarimizning haqiqiy natijalari</h2>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid">
+          <!-- JS orqali to'ldiriladi -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- COURSE DETAIL MODAL -->
+  <div class="modal-overlay" id="courseDetailModal">
+    <div class="modal-content">
+      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
+      <div id="courseModalBody"></div>
+    </div>
+  </div>
+
+  <!-- GLOBAL SEARCH MODAL -->
+  <div class="modal-overlay" id="globalSearchModal">
+    <div class="modal-content" style="max-width: 650px;">
+      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
+      <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.25rem;" data-i18n="search_global_title">Tezkor qidiruv</h3>
+      <div style="position: relative; margin-bottom: 1.25rem;">
+        <i class="fas fa-search" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+        <input 
+          type="text" 
+          id="globalSearchInput" 
+          class="form-control" 
+          placeholder="Kurs nomi, yo'nalish yoki mentor..." 
+          data-i18n-ph="search_quick_placeholder" 
+          style="padding-left: 48px; height: 50px; font-size: 1rem;" 
+          autocomplete="off"
+        >
+      </div>
+      <div id="globalSearchResults" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+        <!-- Live search items -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+            <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+          </a>
+          <p class="footer-brand-desc" data-i18n="footer_desc">
+            EduCenter — zamonaviy kasblar, professional mentorlar va amaliy loyihalarga asoslangan innovatsion o'quv markazi.
+          </p>
+          <div class="social-links">
+            <a href="https://t.me/oquvmarkazi222bot" target="_blank" class="social-btn" title="Telegram Bot"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading" data-i18n="footer_quick_links">Tezkor havolalar</h4>
+          <div class="footer-menu">
+            <a href="index.html" class="footer-menu-link" data-i18n="nav_home">Bosh sahifa</a>
+            <a href="courses.html" class="footer-menu-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
+            <a href="about.html" class="footer-menu-link" data-i18n="nav_about">Biz haqimizda</a>
+            <a href="favorites.html" class="footer-menu-link" data-i18n="nav_favorites">Saralanganlar</a>
+            <a href="cart.html" class="footer-menu-link" data-i18n="nav_cart">Savatcha</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading" data-i18n="footer_courses_title">Yo'nalishlar</h4>
+          <div class="footer-menu">
+            <a href="courses.html" class="footer-menu-link">Frontend Dasturlash</a>
+            <a href="courses.html" class="footer-menu-link">Python & Backend</a>
+            <a href="courses.html" class="footer-menu-link">Grafik & UI/UX Dizayn</a>
+            <a href="courses.html" class="footer-menu-link">IELTS & General English</a>
+            <a href="courses.html" class="footer-menu-link">Robototexnika & IT Kids</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading" data-i18n="footer_contact_title">Aloqa markazi</h4>
+          <div class="footer-menu" style="gap: 1rem;">
+            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
+              <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-top: 4px;"></i>
+              <span>Toshkent sh., Yunusobod t., Amir Temur ko'chasi 107-B</span>
+            </div>
+            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
+              <i class="fas fa-phone-alt" style="color: var(--primary);"></i>
+              <a href="tel:+998712001122" style="color: inherit;">+998 71 200 11 22</a>
+            </div>
+            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
+              <i class="fab fa-telegram" style="color: #229ED9;"></i>
+              <a href="https://t.me/oquvmarkazi222bot" target="_blank" style="color: inherit;">@oquvmarkazi222bot</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2025-2026 EduCenter Academy. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></div>
+        <div data-i18n="footer_developer_note">GitHub, Vercel va Netlify uchun moslashtirilgan.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/courses-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
