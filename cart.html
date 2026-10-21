@@ -1,318 +1,1932 @@
 <!DOCTYPE html>
 <html lang="uz" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Savatcha va Buyurtma berish — EduCenter Academy</title>
-  <meta name="description" content="EduCenter Savatchasi: tanlangan kurslar va o'quv qo'llanmalarini Telegram bot orqali rasmiylashtirish.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <title>LUNO COFFEE — Savat & Buyurtma Berish | Telegram Bot Integratsiyasi</title>
+  <meta name="description"
+    content="Luno Coffee savati: Mahsulotlar miqdorini boshqaring, promokoddan foydalaning va to'g'ridan-to'g'ri Telegram bot orqali rasmiylashtiring.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary: #0e0a07;
+      --bg-secondary: #17110c;
+      --bg-card: #1f1711;
+      --bg-card-hover: #291f17;
+      --text-primary: #f8f4ee;
+      --text-secondary: #bdaea1;
+      --text-muted: #857466;
+      --accent: #d4a373;
+      --accent-hover: #c58f5e;
+      --accent-glow: rgba(212, 163, 115, 0.28);
+      --accent-subtle: rgba(212, 163, 115, 0.12);
+      --gold: #e6b800;
+      --gold-glow: rgba(230, 184, 0, 0.25);
+      --border: rgba(212, 163, 115, 0.16);
+      --border-hover: rgba(212, 163, 115, 0.45);
+      --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+      --glass-bg: rgba(20, 14, 10, 0.85);
+      --glass-border: rgba(212, 163, 115, 0.2);
+      --danger: #ef4444;
+      --success: #10b981;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #faf6f0;
+      --bg-secondary: #f3ebe0;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --text-primary: #2a1810;
+      --text-secondary: #5e4635;
+      --text-muted: #917c6b;
+      --accent: #b0723a;
+      --accent-hover: #965f2e;
+      --accent-glow: rgba(176, 114, 58, 0.2);
+      --accent-subtle: rgba(176, 114, 58, 0.1);
+      --gold: #c99300;
+      --gold-glow: rgba(201, 147, 0, 0.2);
+      --border: rgba(94, 70, 53, 0.16);
+      --border-hover: rgba(176, 114, 58, 0.5);
+      --card-shadow: 0 10px 30px rgba(74, 44, 29, 0.08);
+      --glass-bg: rgba(250, 246, 240, 0.88);
+      --glass-border: rgba(176, 114, 58, 0.22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px var(--accent-glow);
+      color: #fff;
+    }
+
+    .logo-badge svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .icon-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      min-width: 19px;
+      height: 19px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid var(--bg-primary);
+    }
+
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-select-btn {
+      height: 42px;
+      padding: 0 14px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+      padding: 6px;
+      min-width: 130px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 100;
+    }
+
+    .lang-dropdown.open {
+      display: flex;
+    }
+
+    .lang-option {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .lang-option:hover,
+    .lang-option.active {
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--card-shadow);
+      z-index: 999;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer .nav-link {
+      font-size: 1.1rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ==========================================================================
+       CART & CHECKOUT LAYOUT
+       ========================================================================== */
+    .cart-header-section {
+      padding: 45px 0 25px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, var(--accent-subtle), transparent 70%);
+    }
+
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .page-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cart-layout {
+      padding: 40px 0 90px;
+    }
+
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    /* Cart Items List */
+    .cart-items-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .card-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .card-top-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .clear-cart-link {
+      color: var(--danger);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .clear-cart-link:hover {
+      opacity: 0.8;
+    }
+
+    .cart-item-row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto auto;
+      gap: 20px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-row:last-child {
+      border-bottom: none;
+    }
+
+    .item-img-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .item-img-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .item-info h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .item-info .item-unit-price {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Qty Stepper */
+    .qty-stepper {
+      display: flex;
+      align-items: center;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .qty-value {
+      width: 32px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .item-total-col {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .item-total-price {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .item-remove-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      transition: var(--transition);
+    }
+
+    .item-remove-btn:hover {
+      color: var(--danger);
+      transform: scale(1.1);
+    }
+
+    .item-remove-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Empty Cart View */
+    .empty-cart-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-cart-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-full);
+      background: var(--accent-subtle);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .empty-cart-circle svg {
+      width: 40px;
+      height: 40px;
+      fill: currentColor;
+    }
+
+    /* Checkout & Summary Card */
+    .checkout-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--card-shadow);
+      position: sticky;
+      top: 100px;
+    }
+
+    .checkout-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Summary Lines */
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .summary-line.total {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      padding-top: 16px;
+      border-top: 1px dashed var(--border-hover);
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* Promo code box */
+    .promo-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .promo-input {
+      flex: 1;
+      height: 44px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0 14px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .promo-btn {
+      padding: 0 18px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .promo-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Form Fields */
+    .checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .form-control {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .form-radio-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .radio-label-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: var(--bg-secondary);
+      transition: var(--transition);
+    }
+
+    .radio-label-card:has(input:checked) {
+      border-color: var(--accent);
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .btn-submit-order {
+      width: 100%;
+      height: 52px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px var(--accent-glow);
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    .btn-submit-order:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px var(--accent-glow);
+    }
+
+    .btn-submit-order:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tg-notice {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .tg-notice svg {
+      width: 16px;
+      height: 16px;
+      fill: #0088cc;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       MODAL SUCCESS
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      animation: modalPop 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    @keyframes modalPop {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-icon-success {
+      width: 76px;
+      height: 76px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .modal-icon-success svg {
+      width: 44px;
+      height: 44px;
+      fill: currentColor;
+    }
+
+    .modal-box h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .modal-box p {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .order-details-summary {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: left;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 70px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      animation: toastIn 0.35s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .toast.success {
+      border-color: var(--success);
+    }
+
+    .toast.error {
+      border-color: var(--danger);
+    }
+
+    .toast svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    @keyframes toastIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes toastOut {
+      to {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .cart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .cart-item-row {
+        grid-template-columns: 70px 1fr;
+        gap: 14px;
+      }
+
+      .qty-stepper {
+        grid-column: 1 / 2;
+      }
+
+      .item-total-col {
+        grid-column: 2 / 3;
+        align-items: flex-start;
+      }
+
+      .form-radio-group {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container nav-wrapper">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-        <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-badge">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
+          </svg>
+        </div>
+        <span>LUNO<small
+            style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
-        <a href="courses.html" class="nav-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
-        <a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
-        <a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Saralanganlar</a>
-        <a href="cart.html" class="nav-link active" data-i18n="nav_cart">Savatcha</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a></li>
+          <li><a href="menu.html" class="nav-link" data-i18n="nav_menu">Menyu</a></li>
+          <li><a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Sevimlilar</a></li>
+          <li><a href="cart.html" class="nav-link active" data-i18n="nav_cart">Savat</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a></li>
+        </ul>
       </nav>
 
-      <div class="header-actions">
-        <!-- Global Search Button -->
-        <button class="icon-btn" id="globalSearchBtn" title="Qidiruv">
-          <i class="fas fa-search"></i>
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Mavzuni almashtirish">
+          <svg id="themeIcon" viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+            <path
+              d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
+          </svg>
         </button>
 
         <!-- Language Switcher -->
-        <div class="lang-selector">
-          <button class="lang-btn" id="langSelectorBtn" title="Tilni tanlash">
-            <i class="fas fa-globe"></i>
+        <div class="lang-switcher">
+          <button class="lang-select-btn" id="langBtn">
             <span id="currentLangLabel">UZ</span>
-            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;">
+              <path d="M7,10L12,15L17,10H7Z" />
+            </svg>
           </button>
           <div class="lang-dropdown" id="langDropdown">
-            <button class="lang-item active" data-lang="uz">🇺🇿 O'zbekcha</button>
-            <button class="lang-item" data-lang="ru">🇷🇺 Русский</button>
-            <button class="lang-item" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option active" data-lang="uz">🇺🇿 O'zbekcha</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
           </div>
         </div>
 
-        <!-- Theme Toggle -->
-        <button class="icon-btn" id="themeToggleBtn" title="Mavzuni almashtirish">
-          <i class="fas fa-sun theme-toggle-icon"></i>
-        </button>
-
         <!-- Favorites Icon -->
-        <a href="favorites.html" class="icon-btn" title="Saralanganlar">
-          <i class="fas fa-heart"></i>
-          <span class="counter-badge fav-count-badge" style="display: none;">0</span>
+        <a href="favorites.html" class="icon-btn" aria-label="Sevimlilar">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+            <path
+              d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+          </svg>
+          <span class="icon-badge" id="favBadge">0</span>
         </a>
 
         <!-- Cart Icon -->
-        <a href="cart.html" class="icon-btn" title="Savatcha">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="counter-badge cart-count-badge" style="display: none;">0</span>
+        <a href="cart.html" class="icon-btn" aria-label="Savat">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+            <path
+              d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
+          </svg>
+          <span class="icon-badge" id="cartBadge">0</span>
         </a>
 
-        <!-- Mobile Burger -->
-        <button class="mobile-toggle" id="mobileMenuToggle" title="Menyu">
-          <i class="fas fa-bars"></i>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor;">
+            <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+          </svg>
         </button>
       </div>
     </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
+      <a href="menu.html" class="nav-link" data-i18n="nav_menu">Menyu</a>
+      <a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Sevimlilar</a>
+      <a href="cart.html" class="nav-link active" data-i18n="nav_cart">Savat</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
+    </div>
   </header>
 
-  <!-- CART PAGE CONTENT -->
-  <main class="section">
+  <!-- ==========================================================================
+       CART & CHECKOUT MAIN
+       ========================================================================== -->
+  <section class="cart-header-section">
     <div class="container">
-      
-      <div class="section-header">
-        <span class="section-tag" data-i18n="nav_cart">Savatcha</span>
-        <h1 class="section-title" data-i18n="cart_title">Sizning Savatchangiz</h1>
-        <p class="section-subtitle" data-i18n="cart_subtitle">Tanlangan kurslar va o'quv materiallari</p>
-      </div>
+      <h1 class="page-title" data-i18n="cart_title">Savatingiz va Buyurtma</h1>
+      <p class="page-subtitle" data-i18n="cart_subtitle">
+        Mahsulotlaringizni tekshiring, yetkazib berish ma'lumotlarini kiriting va buyurtma to'g'ridan-to'g'ri Telegram
+        bot orqali qabul qilinadi.
+      </p>
+    </div>
+  </section>
 
-      <!-- Empty Cart State -->
-      <div class="empty-state" id="cartEmptyState" style="display: none;">
-        <div class="empty-state-icon">
-          <i class="fas fa-shopping-basket"></i>
-        </div>
-        <h3 class="empty-title" data-i18n="cart_empty_title">Savatchangiz bo'sh</h3>
-        <p class="empty-desc" data-i18n="cart_empty_desc">Kurslar bo'limiga o'tib o'zingizga ma'qul yo'nalishlarni savatchaga qo'shing.</p>
-        <a href="courses.html" class="btn btn-primary" data-i18n="cart_btn_explore">
-          <i class="fas fa-compass"></i> Kurslarni ko'rish
-        </a>
-      </div>
+  <main class="cart-layout">
+    <div class="container">
+      <div class="cart-grid">
 
-      <!-- Cart Content Wrapper (Grid Layout) -->
-      <div class="cart-layout" id="cartContentWrapper">
-        
-        <!-- Left: Items list -->
-        <div class="cart-table-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Buyurtma tarkibi</h3>
-            <button class="btn btn-sm btn-danger" id="clearCartBtn" data-i18n="cart_clear">
-              <i class="fas fa-trash"></i> Savatchani tozalash
+        <!-- LEFT: Cart Items List -->
+        <div class="cart-items-card">
+          <div class="card-top-header">
+            <h2 data-i18n="cart_items_heading">Tanlangan Mahsulotlar</h2>
+            <button class="clear-cart-link" id="clearCartBtn" title="Savatni tozalash">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;">
+                <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+              </svg>
+              <span data-i18n="btn_clear_cart">Savatni tozalash</span>
             </button>
           </div>
 
-          <!-- Items injected by JS -->
-          <div id="cartItemsList"></div>
+          <div id="cartItemsContainer">
+            <!-- Rendered dynamically -->
+          </div>
 
-          <!-- Promo Code Input -->
-          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-            <label class="form-label">Promokod bormi? (Chegirma uchun)</label>
-            <div class="promo-form">
-              <input type="text" id="promoCodeInput" class="form-control" placeholder="DEMO2025" data-i18n-ph="cart_promo_placeholder" style="text-transform: uppercase;">
-              <button class="btn btn-secondary" id="applyPromoBtn" type="button" data-i18n="cart_promo_apply">Qo'llash</button>
-            </div>
-            <div style="font-size: 0.8rem; color: var(--text-subtle);">
-              💡 Sinab ko'ring: <code style="color: var(--primary); font-weight: 700;">DEMO2025</code> (15% chegirma) yoki <code style="color: var(--primary); font-weight: 700;">TALABA</code> (20% chegirma)
+          <div id="emptyCartView" style="display: none;">
+            <div class="empty-cart-state">
+              <div class="empty-cart-circle">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
+                </svg>
+              </div>
+              <h3 style="font-family:var(--font-heading); font-size:1.6rem; margin-bottom:8px;"
+                data-i18n="empty_cart_title">Savatingiz hozircha bo'sh</h3>
+              <p style="color:var(--text-secondary); margin-bottom:24px;" data-i18n="empty_cart_desc">Kofelar va
+                shirinliklarni menyudan tanlab savatga qo'shishingiz mumkin.</p>
+              <a href="menu.html" class="btn btn-primary"
+                style="display:inline-flex; padding:12px 28px; border-radius:var(--radius-full); background:var(--accent); color:#fff; font-weight:700;"
+                data-i18n="btn_browse_menu">Menyuga O'tish</a>
             </div>
           </div>
         </div>
 
-        <!-- Right: Checkout Form & Summary -->
-        <div class="order-summary-card">
-          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.25rem;" data-i18n="cart_summary_title">Buyurtma hisobi</h3>
-          
-          <div class="summary-row">
-            <span data-i18n="cart_subtotal">Oraliq summa:</span>
-            <span id="cartSubtotalAmount" style="font-weight: 700;">0 so'm</span>
-          </div>
-          
-          <div class="summary-row">
-            <span data-i18n="cart_discount">Chegirma:</span>
-            <span id="cartDiscountAmount" style="color: var(--accent-emerald); font-weight: 700;">0 so'm (0%)</span>
+        <!-- RIGHT: Order Summary & Checkout Form -->
+        <div class="checkout-card" id="checkoutSection">
+          <h3 data-i18n="checkout_heading">Buyurtmani Rasmiylashtirish</h3>
+
+          <!-- Promo Code Input -->
+          <div class="promo-box">
+            <input type="text" id="promoCodeInput" class="promo-input" placeholder="Promokod (masalan: LUNO10)">
+            <button class="promo-btn" id="applyPromoBtn" data-i18n="btn_apply_promo">Qo'llash</button>
           </div>
 
-          <div class="summary-row total-row">
-            <span data-i18n="cart_total_price">Yakuniy to'lov:</span>
-            <span id="cartFinalTotalAmount">0 so'm</span>
+          <!-- Price Calculations -->
+          <div class="summary-line">
+            <span data-i18n="sum_subtotal">Mahsulotlar jami:</span>
+            <span id="subtotalVal">0 so'm</span>
+          </div>
+          <div class="summary-line">
+            <span data-i18n="sum_delivery">Yetkazib berish:</span>
+            <span id="deliveryVal">15,000 so'm</span>
+          </div>
+          <div class="summary-line" id="discountRow" style="display: none; color: var(--success);">
+            <span data-i18n="sum_discount">Chegirma (LUNO10):</span>
+            <span id="discountVal">-0 so'm</span>
+          </div>
+          <div class="summary-line total">
+            <span data-i18n="sum_total">Jami to'lov:</span>
+            <span id="totalVal">0 so'm</span>
           </div>
 
-          <!-- Checkout Form -->
-          <form id="checkoutOrderForm" style="margin-top: 2rem;">
-            <div style="margin-bottom: 1.25rem;">
-              <h4 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 4px;" data-i18n="checkout_title">Buyurtmani rasmiylashtirish</h4>
-              <p style="font-size: 0.825rem; color: var(--text-subtle);" data-i18n="checkout_subtitle">
-                Ma'lumotlaringiz to'g'ridan-to'g'ri Telegram botimizga yuboriladi
-              </p>
+          <!-- Form Details -->
+          <form class="checkout-form" id="orderCheckoutForm">
+            <div class="form-group">
+              <label for="custName" data-i18n="label_name">Ism va familiyangiz *</label>
+              <input type="text" id="custName" class="form-control" placeholder="Aziz Karimov" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="orderName" data-i18n="form_name">Ism va Familiyangiz *</label>
-              <input type="text" id="orderName" class="form-control" placeholder="Said Ahmedov" data-i18n-ph="form_name_placeholder" required>
+              <label for="custPhone" data-i18n="label_phone">Telefon raqamingiz *</label>
+              <input type="tel" id="custPhone" class="form-control" placeholder="+998 90 123 45 67" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="orderPhone" data-i18n="form_phone">Telefon raqamingiz *</label>
-              <input type="tel" id="orderPhone" class="form-control" placeholder="+998 90 123 45 67" data-i18n-ph="form_phone_placeholder" required>
+              <label data-i18n="label_delivery_type">Yetkazib berish usuli *</label>
+              <div class="form-radio-group">
+                <label class="radio-label-card">
+                  <input type="radio" name="deliveryType" value="Kuryer orqali yetkazish" checked>
+                  <span data-i18n="opt_delivery">Yetkazib berish</span>
+                </label>
+                <label class="radio-label-card">
+                  <input type="radio" name="deliveryType" value="Olib ketish (Takeaway)">
+                  <span data-i18n="opt_takeaway">Olib ketish</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" id="addressGroup">
+              <label for="custAddress" data-i18n="label_address">Yetkazish manzili va mo'ljal *</label>
+              <input type="text" id="custAddress" class="form-control"
+                placeholder="Toshkent sh., Yunusobod 4-mavze, 12-uy">
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="orderPayment" data-i18n="form_payment">To'lov usuli *</label>
-              <select id="orderPayment" class="form-control" required>
-                <option value="Click" data-i18n="form_payment_click">Click orqali to'lov</option>
-                <option value="Payme" data-i18n="form_payment_payme">Payme orqali to'lov</option>
-                <option value="Naqd / Karta (Markazda)" data-i18n="form_payment_cash">O'quv markazida naqd / karta</option>
+              <label for="custPayment" data-i18n="label_payment">To'lov usuli *</label>
+              <select id="custPayment" class="form-control">
+                <option value="Naqd pul (kurerga)">💵 Naqd pul (kurerga)</option>
+                <option value="Click orqali to'lov">📱 Click</option>
+                <option value="Payme orqali to'lov">💳 Payme</option>
+                <option value="Uzcard / Humo terminali">💳 Terminal orqali (karta)</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="orderComment" data-i18n="form_comment">Qo'shimcha izoh yoki savollaringiz</label>
-              <textarea id="orderComment" class="form-control" rows="2" placeholder="Dars vaqtlari yoki qiziqishlaringiz haqida yozishingiz mumkin..." data-i18n-ph="form_comment_placeholder"></textarea>
+              <label for="custNotes" data-i18n="label_notes">Buyurtmaga izoh</label>
+              <textarea id="custNotes" class="form-control" rows="2"
+                placeholder="Masalan: Shakar kamroq solinsin, domofon kodi: 45..."></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;" data-i18n="btn_submit_order">
-              <i class="fab fa-telegram-plane"></i> Buyurtmani tasdiqlash
+            <button type="submit" class="btn-submit-order" id="submitOrderBtn">
+              <span id="submitOrderBtnText" data-i18n="btn_confirm_order">Buyurtmani Tasdiqlash</span>
+              <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+              </svg>
             </button>
 
-            <div style="margin-top: 1rem; text-align: center; font-size: 0.8rem; color: var(--text-subtle); display: flex; align-items: center; justify-content: center; gap: 6px;">
-              <i class="fas fa-shield-alt" style="color: var(--accent-emerald);"></i>
-              <span>Telegram Bot orqali 100% xavfsiz jo'natish</span>
+            <div class="tg-notice">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
+              </svg>
+              <span data-i18n="tg_safe_notice">Buyurtma to'g'ridan-to'g'ri Telegram botimizga yuboriladi</span>
             </div>
           </form>
-
         </div>
 
       </div>
-
     </div>
   </main>
 
-  <!-- ORDER SUCCESS MODAL -->
-  <div class="modal-overlay" id="orderSuccessModal">
-    <div class="modal-content" style="text-align: center;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem;">
-        <i class="fas fa-check"></i>
+  <!-- ==========================================================================
+       SUCCESS MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon-success">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" />
+        </svg>
       </div>
-      <h2 style="font-family: var(--font-heading); font-size: 1.85rem; margin-bottom: 0.75rem;" data-i18n="order_success_title">Buyurtmangiz qabul qilindi! 🎉</h2>
-      <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;" data-i18n="order_success_desc">
-        Ma'lumotlaringiz bizning Telegram botimizga (@oquvmarkazi222bot) yetib bordi. Menejerimiz tez orada siz bilan bog'lanadi.
+      <h2 data-i18n="modal_success_title">Buyurtmangiz Qabul Qilindi!</h2>
+      <p data-i18n="modal_success_desc">
+        Rahmat! Buyurtma tafsilotlari Telegram orqali adminga muvaffaqiyatli yetib bordi. Tez orada operatorimiz siz
+        bilan bog'lanadi.
       </p>
 
-      <div style="background: var(--bg-surface-elevated); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; display: inline-block;">
-        <span data-i18n="order_number">Buyurtma ID:</span>
-        <strong id="orderNumberDisplay" style="color: var(--primary); font-size: 1.1rem; letter-spacing: 0.05em; margin-left: 6px;">ORD-000000</strong>
+      <div class="order-details-summary" id="modalOrderSummary">
+        <!-- Rendered after order dispatch -->
       </div>
 
-      <div style="display: flex; gap: 12px; justify-content: center;">
-        <a href="https://t.me/oquvmarkazi222bot" target="_blank" class="btn btn-secondary">
-          <i class="fab fa-telegram"></i> Botga o'tish
-        </a>
-        <button class="btn btn-primary modal-close-action" data-i18n="btn_close">
-          Yopish
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- GLOBAL SEARCH MODAL -->
-  <div class="modal-overlay" id="globalSearchModal">
-    <div class="modal-content" style="max-width: 650px;">
-      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
-      <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.25rem;" data-i18n="search_global_title">Tezkor qidiruv</h3>
-      <div style="position: relative; margin-bottom: 1.25rem;">
-        <i class="fas fa-search" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
-        <input 
-          type="text" 
-          id="globalSearchInput" 
-          class="form-control" 
-          placeholder="Kurs nomi, yo'nalish yoki mentor..." 
-          data-i18n-ph="search_quick_placeholder" 
-          style="padding-left: 48px; height: 50px; font-size: 1rem;" 
-          autocomplete="off"
-        >
-      </div>
-      <div id="globalSearchResults" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-        <!-- Live search items -->
-      </div>
+      <a href="menu.html" class="btn btn-primary"
+        style="width:100%; height:48px; border-radius:var(--radius-full); background:var(--accent); color:#fff; font-weight:700;"
+        data-i18n="btn_continue_shopping">
+        Menyuga Qaytish
+      </a>
     </div>
   </div>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
-            <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-            <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-badge">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
+              </svg>
+            </div>
+            <span>LUNO<small
+                style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
           </a>
-          <p class="footer-brand-desc" data-i18n="footer_desc">
-            EduCenter — zamonaviy kasblar, professional mentorlar va amaliy loyihalarga asoslangan innovatsion o'quv markazi.
+          <p data-i18n="footer_brand_desc">
+            Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning
+            xizmatingizdamiz.
           </p>
-          <div class="social-links">
-            <a href="https://t.me/oquvmarkazi222bot" target="_blank" class="social-btn"><i class="fab fa-telegram-plane"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-          </div>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_quick_links">Tezkor havolalar</h4>
-          <div class="footer-menu">
-            <a href="index.html" class="footer-menu-link" data-i18n="nav_home">Bosh sahifa</a>
-            <a href="courses.html" class="footer-menu-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
-            <a href="about.html" class="footer-menu-link" data-i18n="nav_about">Biz haqimizda</a>
-            <a href="favorites.html" class="footer-menu-link" data-i18n="nav_favorites">Saralanganlar</a>
-            <a href="cart.html" class="footer-menu-link" data-i18n="nav_cart">Savatcha</a>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav">Sahifalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav_home">Bosh sahifa</a></li>
+            <li><a href="menu.html" data-i18n="nav_menu">Menyu</a></li>
+            <li><a href="favorites.html" data-i18n="nav_favorites">Sevimlilar</a></li>
+            <li><a href="cart.html" data-i18n="nav_cart">Savat</a></li>
+            <li><a href="about.html" data-i18n="nav_about">Biz haqimizda</a></li>
+          </ul>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_courses_title">Yo'nalishlar</h4>
-          <div class="footer-menu">
-            <a href="courses.html" class="footer-menu-link">Frontend Dasturlash</a>
-            <a href="courses.html" class="footer-menu-link">Python & Backend</a>
-            <a href="courses.html" class="footer-menu-link">Grafik & UI/UX Dizayn</a>
-            <a href="courses.html" class="footer-menu-link">IELTS & General English</a>
-            <a href="courses.html" class="footer-menu-link">Robototexnika & IT Kids</a>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_hours">Ish Vaqti</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">Dush - Juma: 08:00 - 23:00</li>
+            <li style="color:var(--text-secondary);">Shanba - Yak: 09:00 - 00:00</li>
+            <li style="color:var(--accent); font-weight:700;">Yetkazib berish: 24/7</li>
+          </ul>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_contact_title">Aloqa markazi</h4>
-          <div class="footer-menu" style="gap: 1rem;">
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-top: 4px;"></i>
-              <span>Toshkent sh., Yunusobod t., Amir Temur ko'chasi 107-B</span>
-            </div>
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fas fa-phone-alt" style="color: var(--primary);"></i>
-              <a href="tel:+998712001122" style="color: inherit;">+998 71 200 11 22</a>
-            </div>
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fab fa-telegram" style="color: #229ED9;"></i>
-              <a href="https://t.me/oquvmarkazi222bot" target="_blank" style="color: inherit;">@oquvmarkazi222bot</a>
-            </div>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact">Manzil & Aloqa</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">📍 Toshkent sh., Amir Temur shoh ko'chasi, 42</li>
+            <li><a href="tel:+998712001122">📞 +998 (71) 200-11-22</a></li>
+            <li><a href="https://t.me/gooootosholbot" target="_blank" rel="noopener">✈️ Telegram Bot:
+                @gooootosholbot</a></li>
+          </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2025-2026 EduCenter Academy. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></div>
-        <div data-i18n="footer_developer_note">GitHub, Vercel va Netlify uchun moslashtirilgan.</div>
+        <p>&copy; 2026 LUNO COFFEE. Barcha huquqlar himoyalangan.</p>
+        <p>Created for GitHub, Vercel & Netlify Deployment</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/courses-data.js"></script>
-  <script src="js/main.js"></script>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    /* TELEGRAM BOT CREDENTIALS */
+    const TELEGRAM_CONFIG = {
+      botToken: '8457269190:AAHaG-zo13tdywvZjoCVPr3TqfEWqv358Ys',
+      userId: '6932874571'
+    };
+
+    /* ALL PRODUCTS CATALOG */
+    const ALL_PRODUCTS = [
+      {
+        id: 'prod-1',
+        category: 'hot',
+        price: 34000,
+        image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Caramel Macchiato', ru: 'Карамельный Маккиато', en: 'Caramel Macchiato' }
+      },
+      {
+        id: 'prod-2',
+        category: 'cold',
+        price: 36000,
+        image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Spanish Iced Latte', ru: 'Испанский Айс Латте', en: 'Spanish Iced Latte' }
+      },
+      {
+        id: 'prod-3',
+        category: 'hot',
+        price: 22000,
+        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Double Espresso Roast', ru: 'Двойной Эспрессо', en: 'Double Espresso Roast' }
+      },
+      {
+        id: 'prod-4',
+        category: 'special',
+        price: 42000,
+        image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Pistachio Velvet Latte', ru: 'Фисташковый Бархатный Латте', en: 'Pistachio Velvet Latte' }
+      },
+      {
+        id: 'prod-5',
+        category: 'hot',
+        price: 28000,
+        image: 'https://images.unsplash.com/photo-1572442388796-11668ba67e53?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Classic Cappuccino', ru: 'Классический Капучино', en: 'Classic Cappuccino' }
+      },
+      {
+        id: 'prod-6',
+        category: 'cold',
+        price: 35000,
+        image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Cold Brew Vanilla Foam', ru: 'Колд Брю с Ванильной Пенкой', en: 'Cold Brew Vanilla Foam' }
+      },
+      {
+        id: 'prod-7',
+        category: 'hot',
+        price: 30000,
+        image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Flat White Velvet', ru: 'Флэт Уайт Бархатный', en: 'Flat White Velvet' }
+      },
+      {
+        id: 'prod-8',
+        category: 'cold',
+        price: 38000,
+        image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Hazelnut Mocha Frappe', ru: 'Ореховый Мокка Фраппе', en: 'Hazelnut Mocha Frappe' }
+      },
+      {
+        id: 'prod-9',
+        category: 'dessert',
+        price: 45000,
+        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'San Sebastian Cheesecake', ru: 'Чизкейк Сан-Себастьян', en: 'San Sebastian Cheesecake' }
+      },
+      {
+        id: 'prod-10',
+        category: 'dessert',
+        price: 26000,
+        image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Almond Croissant', ru: 'Миндальный Круассан', en: 'Almond Croissant' }
+      },
+      {
+        id: 'prod-11',
+        category: 'dessert',
+        price: 39000,
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Tiramisu Tradizionale', ru: 'Классический Тирамису', en: 'Tiramisu Tradizionale' }
+      },
+      {
+        id: 'prod-12',
+        category: 'special',
+        price: 37000,
+        image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Ceremonial Matcha Latte', ru: 'Церемониальный Матча Латте', en: 'Ceremonial Matcha Latte' }
+      }
+    ];
+
+    const TRANSLATIONS = {
+      uz: {
+        nav_home: "Bosh sahifa",
+        nav_menu: "Menyu",
+        nav_favorites: "Sevimlilar",
+        nav_cart: "Savat",
+        nav_about: "Biz haqimizda",
+        cart_title: "Savatingiz va Buyurtma",
+        cart_subtitle: "Mahsulotlaringizni tekshiring, yetkazib berish ma'lumotlarini kiriting va buyurtma to'g'ridan-to'g'ri Telegram bot orqali qabul qilinadi.",
+        cart_items_heading: "Tanlangan Mahsulotlar",
+        btn_clear_cart: "Savatni tozalash",
+        empty_cart_title: "Savatingiz hozircha bo'sh",
+        empty_cart_desc: "Kofelar va shirinliklarni menyudan tanlab savatga qo'shishingiz mumkin.",
+        btn_browse_menu: "Menyuga O'tish",
+        checkout_heading: "Buyurtmani Rasmiylashtirish",
+        btn_apply_promo: "Qo'llash",
+        sum_subtotal: "Mahsulotlar jami:",
+        sum_delivery: "Yetkazib berish:",
+        sum_discount: "Chegirma (LUNO10):",
+        sum_total: "Jami to'lov:",
+        label_name: "Ism va familiyangiz *",
+        label_phone: "Telefon raqamingiz *",
+        label_delivery_type: "Yetkazib berish usuli *",
+        opt_delivery: "Yetkazib berish",
+        opt_takeaway: "Olib ketish",
+        label_address: "Yetkazish manzili va mo'ljal *",
+        label_payment: "To'lov usuli *",
+        label_notes: "Buyurtmaga izoh",
+        btn_confirm_order: "Buyurtmani Tasdiqlash",
+        tg_safe_notice: "Buyurtma to'g'ridan-to'g'ri Telegram botimizga yuboriladi",
+        modal_success_title: "Buyurtmangiz Qabul Qilindi!",
+        modal_success_desc: "Rahmat! Buyurtma tafsilotlari Telegram orqali adminga muvaffaqiyatli yetib bordi. Tez orada operatorimiz siz bilan bog'lanadi.",
+        btn_continue_shopping: "Menyuga Qaytish",
+        toast_order_sent: "Buyurtma muvaffaqiyatli adminga yuborildi!",
+        toast_promo_applied: "Promokod qo'llandi! 10% chegirma taqdim etildi.",
+        toast_promo_invalid: "Noto'g'ri promokod. 'LUNO10' kodini sinab ko'ring.",
+        toast_cart_cleared: "Savat tozalandi"
+      },
+      ru: {
+        nav_home: "Главная",
+        nav_menu: "Меню",
+        nav_favorites: "Избранное",
+        nav_cart: "Корзина",
+        nav_about: "О нас",
+        cart_title: "Корзина и Оформление",
+        cart_subtitle: "Проверьте ваш заказ, укажите контакты доставки — заказ моментально поступит администратору в Telegram.",
+        cart_items_heading: "Выбранные Товары",
+        btn_clear_cart: "Очистить корзину",
+        empty_cart_title: "Ваша корзина пуста",
+        empty_cart_desc: "Выберите кофе и десерты из меню, чтобы оформить заказ.",
+        btn_browse_menu: "Перейти в меню",
+        checkout_heading: "Оформление Заказа",
+        btn_apply_promo: "Применить",
+        sum_subtotal: "Сумма товаров:",
+        sum_delivery: "Доставка:",
+        sum_discount: "Скидка (LUNO10):",
+        sum_total: "Итого к оплате:",
+        label_name: "Ваше имя и фамилия *",
+        label_phone: "Номер телефона *",
+        label_delivery_type: "Способ получения *",
+        opt_delivery: "Доставка курьером",
+        opt_takeaway: "Самовывоз",
+        label_address: "Адрес доставки и ориентир *",
+        label_payment: "Способ оплаты *",
+        label_notes: "Комментарий к заказу",
+        btn_confirm_order: "Подтвердить Заказ",
+        tg_safe_notice: "Заказ мгновенно отправляется в наш Telegram-бот",
+        modal_success_title: "Заказ Успешно Принят!",
+        modal_success_desc: "Спасибо! Детали заказа отправлены администратору в Telegram. Наш бариста уже начинает приготовление.",
+        btn_continue_shopping: "Продолжить покупки",
+        toast_order_sent: "Заказ успешно отправлен администратору!",
+        toast_promo_applied: "Промокод применен! Скидка 10%.",
+        toast_promo_invalid: "Неверный промокод. Попробуйте 'LUNO10'.",
+        toast_cart_cleared: "Корзина очищена"
+      },
+      en: {
+        nav_home: "Home",
+        nav_menu: "Menu",
+        nav_favorites: "Favorites",
+        nav_cart: "Cart",
+        nav_about: "About Us",
+        cart_title: "Your Cart & Checkout",
+        cart_subtitle: "Review your drinks and sweet treats. Submit your order and it will be dispatched straight to Telegram in real time.",
+        cart_items_heading: "Selected Items",
+        btn_clear_cart: "Clear cart",
+        empty_cart_title: "Your cart is empty",
+        empty_cart_desc: "Add your favorite coffee or pastries from our menu to place an order.",
+        btn_browse_menu: "Browse Menu",
+        checkout_heading: "Order Checkout",
+        btn_apply_promo: "Apply",
+        sum_subtotal: "Items subtotal:",
+        sum_delivery: "Delivery fee:",
+        sum_discount: "Discount (LUNO10):",
+        sum_total: "Grand Total:",
+        label_name: "Full Name *",
+        label_phone: "Phone Number *",
+        label_delivery_type: "Fulfillment *",
+        opt_delivery: "Delivery",
+        opt_takeaway: "Takeaway",
+        label_address: "Delivery Address & Landmark *",
+        label_payment: "Payment Method *",
+        label_notes: "Order Notes",
+        btn_confirm_order: "Confirm Order",
+        tg_safe_notice: "Orders are dispatched directly to our Telegram Bot",
+        modal_success_title: "Order Placed Successfully!",
+        modal_success_desc: "Thank you! Your order details were sent to our manager via Telegram. Our baristas are on it!",
+        btn_continue_shopping: "Back to Menu",
+        toast_order_sent: "Order sent to administrator via Telegram!",
+        toast_promo_applied: "Promo code applied! 10% discount granted.",
+        toast_promo_invalid: "Invalid promo code. Try 'LUNO10'.",
+        toast_cart_cleared: "Cart cleared"
+      }
+    };
+
+    const Storage = {
+      getTheme() { return localStorage.getItem('coffee_theme') || 'dark'; },
+      setTheme(t) { localStorage.setItem('coffee_theme', t); },
+      getLang() { return localStorage.getItem('coffee_lang') || 'uz'; },
+      setLang(l) { localStorage.setItem('coffee_lang', l); },
+      getCart() {
+        try { return JSON.parse(localStorage.getItem('coffee_cart')) || []; }
+        catch (e) { return []; }
+      },
+      setCart(c) { localStorage.setItem('coffee_cart', JSON.stringify(c)); },
+      getFavorites() {
+        try { return JSON.parse(localStorage.getItem('coffee_favorites')) || []; }
+        catch (e) { return []; }
+      }
+    };
+
+    const CartApp = {
+      lang: 'uz',
+      theme: 'dark',
+      discountPercent: 0,
+      deliveryFee: 15000,
+
+      init() {
+        this.lang = Storage.getLang();
+        this.theme = Storage.getTheme();
+
+        this.applyTheme(this.theme);
+        this.applyLang(this.lang);
+        this.updateBadges();
+        this.renderCart();
+        this.setupEventListeners();
+      },
+
+      applyTheme(theme) {
+        this.theme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        Storage.setTheme(theme);
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+          icon.innerHTML = theme === 'light'
+            ? '<path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/>'
+            : '<path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z"/>';
+        }
+      },
+
+      toggleTheme() {
+        this.applyTheme(this.theme === 'dark' ? 'light' : 'dark');
+      },
+
+      applyLang(lang) {
+        this.lang = lang;
+        Storage.setLang(lang);
+        document.documentElement.lang = lang;
+        document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+
+        document.querySelectorAll('.lang-option').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        const dict = TRANSLATIONS[lang] || TRANSLATIONS.uz;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.innerHTML = dict[key];
+        });
+
+        this.renderCart();
+      },
+
+      updateBadges() {
+        const cart = Storage.getCart();
+        const totalCartItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+        const cartBadge = document.getElementById('cartBadge');
+        if (cartBadge) cartBadge.textContent = totalCartItems;
+
+        const favs = Storage.getFavorites();
+        const favBadge = document.getElementById('favBadge');
+        if (favBadge) favBadge.textContent = favs.length;
+      },
+
+      renderCart() {
+        const cart = Storage.getCart();
+        const container = document.getElementById('cartItemsContainer');
+        const emptyView = document.getElementById('emptyCartView');
+        const checkoutCard = document.getElementById('checkoutSection');
+        const clearBtn = document.getElementById('clearCartBtn');
+
+        if (cart.length === 0) {
+          container.innerHTML = '';
+          emptyView.style.display = 'block';
+          clearBtn.style.display = 'none';
+          checkoutCard.style.opacity = '0.5';
+          checkoutCard.style.pointerEvents = 'none';
+          this.calculateTotals(0);
+          return;
+        }
+
+        emptyView.style.display = 'none';
+        clearBtn.style.display = 'inline-flex';
+        checkoutCard.style.opacity = '1';
+        checkoutCard.style.pointerEvents = 'auto';
+
+        let subtotal = 0;
+
+        container.innerHTML = cart.map(item => {
+          const product = ALL_PRODUCTS.find(p => p.id === item.id);
+          if (!product) return '';
+
+          const itemTotal = product.price * item.qty;
+          subtotal += itemTotal;
+          const name = product.name[this.lang] || product.name.uz;
+
+          return `
+            <div class="cart-item-row" data-id="${item.id}">
+              <div class="item-img-thumb">
+                <img src="${product.image}" alt="${name}">
+              </div>
+              <div class="item-info">
+                <h4>${name}</h4>
+                <div class="item-unit-price">${product.price.toLocaleString('uz-UZ')} so'm</div>
+              </div>
+              <div class="qty-stepper">
+                <button class="qty-btn" onclick="CartApp.updateQuantity('${item.id}', -1)" title="Kamaytirish">−</button>
+                <span class="qty-value">${item.qty}</span>
+                <button class="qty-btn" onclick="CartApp.updateQuantity('${item.id}', 1)" title="Ko'paytirish">+</button>
+              </div>
+              <div class="item-total-col">
+                <span class="item-total-price">${itemTotal.toLocaleString('uz-UZ')} so'm</span>
+                <button class="item-remove-btn" onclick="CartApp.removeItem('${item.id}')" title="O'chirish">
+                  <svg viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        this.calculateTotals(subtotal);
+      },
+
+      updateQuantity(id, delta) {
+        let cart = Storage.getCart();
+        const item = cart.find(i => i.id === id);
+        if (item) {
+          item.qty += delta;
+          if (item.qty <= 0) {
+            cart = cart.filter(i => i.id !== id);
+          }
+        }
+        Storage.setCart(cart);
+        this.updateBadges();
+        this.renderCart();
+      },
+
+      removeItem(id) {
+        let cart = Storage.getCart();
+        cart = cart.filter(i => i.id !== id);
+        Storage.setCart(cart);
+        this.updateBadges();
+        this.renderCart();
+      },
+
+      clearCart() {
+        if (!confirm("Savatni butunlay tozalashni xohlaysizmi?")) return;
+        Storage.setCart([]);
+        this.updateBadges();
+        this.renderCart();
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        this.showToast(dict.toast_cart_cleared, 'info');
+      },
+
+      calculateTotals(subtotal) {
+        // Free delivery if subtotal > 100,000 UZS or Takeaway selected
+        const deliveryType = document.querySelector('input[name="deliveryType"]:checked')?.value || '';
+        const isTakeaway = deliveryType.includes('Takeaway') || deliveryType.includes('Olib');
+
+        let actualDelivery = this.deliveryFee;
+        if (subtotal === 0 || isTakeaway || subtotal >= 100000) {
+          actualDelivery = 0;
+        }
+
+        const discount = Math.round(subtotal * (this.discountPercent / 100));
+        const grandTotal = Math.max(0, subtotal - discount + actualDelivery);
+
+        document.getElementById('subtotalVal').textContent = `${subtotal.toLocaleString('uz-UZ')} so'm`;
+        document.getElementById('deliveryVal').textContent = actualDelivery === 0 ? "Bepul" : `${actualDelivery.toLocaleString('uz-UZ')} so'm`;
+
+        const discountRow = document.getElementById('discountRow');
+        if (this.discountPercent > 0) {
+          discountRow.style.display = 'flex';
+          document.getElementById('discountVal').textContent = `-${discount.toLocaleString('uz-UZ')} so'm (${this.discountPercent}%)`;
+        } else {
+          discountRow.style.display = 'none';
+        }
+
+        document.getElementById('totalVal').textContent = `${grandTotal.toLocaleString('uz-UZ')} so'm`;
+      },
+
+      applyPromo() {
+        const input = document.getElementById('promoCodeInput');
+        const code = (input.value || '').trim().toUpperCase();
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+
+        if (code === 'LUNO10' || code === 'LUNO' || code === 'DEMO2026') {
+          this.discountPercent = 10;
+          this.showToast(dict.toast_promo_applied, 'success');
+          this.renderCart();
+        } else {
+          this.discountPercent = 0;
+          this.showToast(dict.toast_promo_invalid, 'error');
+          this.renderCart();
+        }
+      },
+
+      /* DISPATCH ORDER TO TELEGRAM BOT API */
+      async sendOrderToTelegram(orderData) {
+        const url = `https://api.telegram.org/bot${TELEGRAM_CONFIG.botToken}/sendMessage`;
+
+        // Format items string
+        const itemsList = orderData.items.map((item, index) => {
+          return `${index + 1}. <b>${item.name}</b> x ${item.qty} dona = ${(item.price * item.qty).toLocaleString('uz-UZ')} so'm`;
+        }).join('\n');
+
+        const messageText = `
+☕ <b>YANGI BUYURTMA QABUL QILINDI!</b>
+━━━━━━━━━━━━━━━━━━━━
+🆔 <b>Buyurtma ID:</b> <code>#${orderData.orderId}</code>
+👤 <b>Mijoz:</b> ${orderData.name}
+📞 <b>Telefon:</b> ${orderData.phone}
+🚚 <b>Yetkazish turi:</b> ${orderData.deliveryType}
+📍 <b>Manzil:</b> ${orderData.address || "Ko'rsatilmagan (Olib ketish)"}
+💳 <b>To'lov usuli:</b> ${orderData.payment}
+📝 <b>Izoh:</b> ${orderData.notes || "Yo'q"}
+━━━━━━━━━━━━━━━━━━━━
+📦 <b>MAHSULOTLAR:</b>
+${itemsList}
+━━━━━━━━━━━━━━━━━━━━
+💰 <b>Mahsulotlar:</b> ${orderData.subtotal.toLocaleString('uz-UZ')} so'm
+🚗 <b>Yetkazish:</b> ${orderData.deliveryFee === 0 ? "Bepul" : orderData.deliveryFee.toLocaleString('uz-UZ') + " so'm"}
+🎟️ <b>Chegirma:</b> ${orderData.discount > 0 ? "-" + orderData.discount.toLocaleString('uz-UZ') + " so'm" : "0 so'm"}
+💵 <b>JAMI TO'LOV:</b> <b>${orderData.grandTotal.toLocaleString('uz-UZ')} so'm</b>
+━━━━━━━━━━━━━━━━━━━━
+📅 <b>Vaqt:</b> ${new Date().toLocaleDateString('uz-UZ')} ${new Date().toLocaleTimeString('uz-UZ')}
+⚡ <i>LUNO COFFEE vebsaytidan kelgan buyurtma</i>
+        `.trim();
+
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: TELEGRAM_CONFIG.userId,
+              text: messageText,
+              parse_mode: 'HTML'
+            })
+          });
+          const json = await res.json();
+          return json.ok;
+        } catch (err) {
+          console.error("Telegram API Error:", err);
+          return false;
+        }
+      },
+
+      showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <svg viewBox="0 0 24 24" style="fill:currentColor;"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/></svg>
+          <span>${message}</span>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.animation = 'toastOut 0.3s forwards ease';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      },
+
+      setupEventListeners() {
+        document.getElementById('themeToggleBtn').addEventListener('click', () => this.toggleTheme());
+
+        // Language Dropdown
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        langBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langDropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => langDropdown.classList.remove('open'));
+        document.querySelectorAll('.lang-option').forEach(opt => {
+          opt.addEventListener('click', () => {
+            this.applyLang(opt.dataset.lang);
+            langDropdown.classList.remove('open');
+          });
+        });
+
+        // Mobile drawer
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        mobileBtn.addEventListener('click', () => mobileDrawer.classList.toggle('open'));
+
+        // Clear cart
+        document.getElementById('clearCartBtn').addEventListener('click', () => this.clearCart());
+
+        // Apply promo
+        document.getElementById('applyPromoBtn').addEventListener('click', () => this.applyPromo());
+
+        // Delivery type radio change
+        document.querySelectorAll('input[name="deliveryType"]').forEach(r => {
+          r.addEventListener('change', (e) => {
+            const isTakeaway = e.target.value.includes('Takeaway') || e.target.value.includes('Olib');
+            const addrGroup = document.getElementById('addressGroup');
+            const addrInput = document.getElementById('custAddress');
+            if (isTakeaway) {
+              addrGroup.style.display = 'none';
+              addrInput.required = false;
+            } else {
+              addrGroup.style.display = 'flex';
+              addrInput.required = true;
+            }
+            this.renderCart();
+          });
+        });
+
+        // Checkout Form Submit -> DISPATCH TO TELEGRAM BOT
+        document.getElementById('orderCheckoutForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const cart = Storage.getCart();
+          if (cart.length === 0) {
+            alert("Savatingiz bo'sh!");
+            return;
+          }
+
+          const submitBtn = document.getElementById('submitOrderBtn');
+          const submitText = document.getElementById('submitOrderBtnText');
+          submitBtn.disabled = true;
+          submitText.textContent = "Telegramga yuborilmoqda...";
+
+          // Gather items details
+          let subtotal = 0;
+          const itemsData = cart.map(item => {
+            const p = ALL_PRODUCTS.find(prod => prod.id === item.id);
+            const pName = p ? (p.name[this.lang] || p.name.uz) : "Kofe";
+            const pPrice = p ? p.price : 0;
+            subtotal += (pPrice * item.qty);
+            return {
+              id: item.id,
+              name: pName,
+              price: pPrice,
+              qty: item.qty
+            };
+          });
+
+          const deliveryType = document.querySelector('input[name="deliveryType"]:checked').value;
+          const isTakeaway = deliveryType.includes('Takeaway') || deliveryType.includes('Olib');
+          const actualDelivery = (subtotal >= 100000 || isTakeaway) ? 0 : this.deliveryFee;
+          const discount = Math.round(subtotal * (this.discountPercent / 100));
+          const grandTotal = Math.max(0, subtotal - discount + actualDelivery);
+          const orderId = 'LUNO-' + Math.floor(100000 + Math.random() * 900000);
+
+          const orderData = {
+            orderId: orderId,
+            name: document.getElementById('custName').value.trim(),
+            phone: document.getElementById('custPhone').value.trim(),
+            deliveryType: deliveryType,
+            address: document.getElementById('custAddress').value.trim(),
+            payment: document.getElementById('custPayment').value,
+            notes: document.getElementById('custNotes').value.trim(),
+            items: itemsData,
+            subtotal: subtotal,
+            deliveryFee: actualDelivery,
+            discount: discount,
+            grandTotal: grandTotal
+          };
+
+          const isSuccess = await this.sendOrderToTelegram(orderData);
+          submitBtn.disabled = false;
+          submitText.textContent = TRANSLATIONS[this.lang].btn_confirm_order;
+
+          if (isSuccess) {
+            // Show Success Modal
+            const modal = document.getElementById('successModal');
+            const summaryBox = document.getElementById('modalOrderSummary');
+            summaryBox.innerHTML = `
+              <div><strong>Buyurtma ID:</strong> #${orderData.orderId}</div>
+              <div><strong>Mijoz:</strong> ${orderData.name} (${orderData.phone})</div>
+              <div><strong>Jami to'lov:</strong> ${orderData.grandTotal.toLocaleString('uz-UZ')} so'm</div>
+              <div><strong>To'lov usuli:</strong> ${orderData.payment}</div>
+              <div><strong>Telegram Bot xabari:</strong> Yetkazildi ✅</div>
+            `;
+            modal.classList.add('open');
+
+            // Reset and clear cart
+            Storage.setCart([]);
+            this.updateBadges();
+            this.renderCart();
+            this.showToast(TRANSLATIONS[this.lang].toast_order_sent, 'success');
+          } else {
+            this.showToast("Telegram botiga yuborishda xatolik yuz berdi. Internet aloqasini tekshiring.", 'error');
+          }
+        });
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => CartApp.init());
+  </script>
 </body>
+
 </html>

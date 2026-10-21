@@ -3,221 +3,1320 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saralanganlar (Izbrannoe) — EduCenter Academy</title>
-  <meta name="description" content="Siz saqlab qo'ygan kurslar va o'quv qo'llanmalar ro'yxati.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <title>LUNO COFFEE — Sevimlilar | Tanlangan Kofelar</title>
+  <meta name="description" content="Luno Coffee — Siz saqlagan sevimli kofelar va shirinliklar ro'yxati. Oson buyurtma berish va savatga qo'shish.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary: #0e0a07;
+      --bg-secondary: #17110c;
+      --bg-card: #1f1711;
+      --bg-card-hover: #291f17;
+      --text-primary: #f8f4ee;
+      --text-secondary: #bdaea1;
+      --text-muted: #857466;
+      --accent: #d4a373;
+      --accent-hover: #c58f5e;
+      --accent-glow: rgba(212, 163, 115, 0.28);
+      --accent-subtle: rgba(212, 163, 115, 0.12);
+      --gold: #e6b800;
+      --gold-glow: rgba(230, 184, 0, 0.25);
+      --border: rgba(212, 163, 115, 0.16);
+      --border-hover: rgba(212, 163, 115, 0.45);
+      --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+      --glass-bg: rgba(20, 14, 10, 0.85);
+      --glass-border: rgba(212, 163, 115, 0.2);
+      --danger: #ef4444;
+      --success: #10b981;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #faf6f0;
+      --bg-secondary: #f3ebe0;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --text-primary: #2a1810;
+      --text-secondary: #5e4635;
+      --text-muted: #917c6b;
+      --accent: #b0723a;
+      --accent-hover: #965f2e;
+      --accent-glow: rgba(176, 114, 58, 0.2);
+      --accent-subtle: rgba(176, 114, 58, 0.1);
+      --gold: #c99300;
+      --gold-glow: rgba(201, 147, 0, 0.2);
+      --border: rgba(94, 70, 53, 0.16);
+      --border-hover: rgba(176, 114, 58, 0.5);
+      --card-shadow: 0 10px 30px rgba(74, 44, 29, 0.08);
+      --glass-bg: rgba(250, 246, 240, 0.88);
+      --glass-border: rgba(176, 114, 58, 0.22);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================================================
+       NAVBAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px var(--accent-glow);
+      color: #fff;
+    }
+
+    .logo-badge svg { width: 24px; height: 24px; fill: currentColor; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active { color: var(--accent); }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .icon-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      min-width: 19px;
+      height: 19px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid var(--bg-primary);
+    }
+
+    /* Language Switcher */
+    .lang-switcher { position: relative; }
+
+    .lang-select-btn {
+      height: 42px;
+      padding: 0 14px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+      padding: 6px;
+      min-width: 130px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 100;
+    }
+
+    .lang-dropdown.open { display: flex; }
+
+    .lang-option {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .lang-option:hover, .lang-option.active {
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--card-shadow);
+      z-index: 999;
+    }
+
+    .mobile-drawer.open { display: flex; }
+
+    .mobile-drawer .nav-link {
+      font-size: 1.1rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ==========================================================================
+       FAVORITES HEADER & TOOLBAR
+       ========================================================================== */
+    .fav-header {
+      padding: 50px 0 30px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, var(--accent-subtle), transparent 70%);
+    }
+
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .page-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .fav-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fav-count {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .fav-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: #fff;
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px var(--accent-glow);
+    }
+
+    .btn-outline-danger {
+      background: transparent;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: var(--danger);
+    }
+
+    .btn-outline-danger:hover {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: var(--danger);
+    }
+
+    /* ==========================================================================
+       FAVORITES GRID
+       ========================================================================== */
+    .fav-main {
+      padding-bottom: 90px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--card-shadow);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .product-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img-wrapper img {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .remove-fav-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: rgba(239, 68, 68, 0.85);
+      backdrop-filter: blur(8px);
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .remove-fav-btn:hover {
+      background: var(--danger);
+      transform: scale(1.1);
+    }
+
+    .remove-fav-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .product-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .product-rating svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    .product-rating span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .product-price small {
+      font-size: 0.75rem;
+      font-family: var(--font-body);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .add-cart-btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .add-cart-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 580px;
+      margin: 40px auto 0;
+    }
+
+    .empty-icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-full);
+      background: var(--accent-subtle);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .empty-icon-circle svg {
+      width: 40px;
+      height: 40px;
+      fill: currentColor;
+    }
+
+    .empty-state h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .empty-state p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 70px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--accent); padding-left: 4px; }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      animation: toastIn 0.35s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .toast.success { border-color: var(--success); }
+    .toast.info { border-color: var(--accent); }
+
+    .toast svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    @keyframes toastIn { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toastOut { to { transform: translateY(50px); opacity: 0; } }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .page-title { font-size: 2.2rem; }
+      .fav-toolbar { flex-direction: column; align-items: flex-start; }
+      .fav-actions { width: 100%; flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container nav-wrapper">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-        <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-badge">
+          <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+        </div>
+        <span>LUNO<small style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
-        <a href="courses.html" class="nav-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
-        <a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
-        <a href="favorites.html" class="nav-link active" data-i18n="nav_favorites">Saralanganlar</a>
-        <a href="cart.html" class="nav-link" data-i18n="nav_cart">Savatcha</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a></li>
+          <li><a href="menu.html" class="nav-link" data-i18n="nav_menu">Menyu</a></li>
+          <li><a href="favorites.html" class="nav-link active" data-i18n="nav_favorites">Sevimlilar</a></li>
+          <li><a href="cart.html" class="nav-link" data-i18n="nav_cart">Savat</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a></li>
+        </ul>
       </nav>
 
-      <div class="header-actions">
-        <!-- Global Search Button -->
-        <button class="icon-btn" id="globalSearchBtn" title="Qidiruv">
-          <i class="fas fa-search"></i>
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Mavzuni almashtirish">
+          <svg id="themeIcon" viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/></svg>
         </button>
 
         <!-- Language Switcher -->
-        <div class="lang-selector">
-          <button class="lang-btn" id="langSelectorBtn" title="Tilni tanlash">
-            <i class="fas fa-globe"></i>
+        <div class="lang-switcher">
+          <button class="lang-select-btn" id="langBtn">
             <span id="currentLangLabel">UZ</span>
-            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M7,10L12,15L17,10H7Z"/></svg>
           </button>
           <div class="lang-dropdown" id="langDropdown">
-            <button class="lang-item active" data-lang="uz">🇺🇿 O'zbekcha</button>
-            <button class="lang-item" data-lang="ru">🇷🇺 Русский</button>
-            <button class="lang-item" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option active" data-lang="uz">🇺🇿 O'zbekcha</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
           </div>
         </div>
 
-        <!-- Theme Toggle -->
-        <button class="icon-btn" id="themeToggleBtn" title="Mavzuni almashtirish">
-          <i class="fas fa-sun theme-toggle-icon"></i>
-        </button>
-
         <!-- Favorites Icon -->
-        <a href="favorites.html" class="icon-btn" title="Saralanganlar">
-          <i class="fas fa-heart"></i>
-          <span class="counter-badge fav-count-badge" style="display: none;">0</span>
+        <a href="favorites.html" class="icon-btn" aria-label="Sevimlilar">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+          <span class="icon-badge" id="favBadge">0</span>
         </a>
 
         <!-- Cart Icon -->
-        <a href="cart.html" class="icon-btn" title="Savatcha">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="counter-badge cart-count-badge" style="display: none;">0</span>
+        <a href="cart.html" class="icon-btn" aria-label="Savat">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/></svg>
+          <span class="icon-badge" id="cartBadge">0</span>
         </a>
 
-        <!-- Mobile Burger -->
-        <button class="mobile-toggle" id="mobileMenuToggle" title="Menyu">
-          <i class="fas fa-bars"></i>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor;"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg>
         </button>
       </div>
     </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
+      <a href="menu.html" class="nav-link" data-i18n="nav_menu">Menyu</a>
+      <a href="favorites.html" class="nav-link active" data-i18n="nav_favorites">Sevimlilar</a>
+      <a href="cart.html" class="nav-link" data-i18n="nav_cart">Savat</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
+    </div>
   </header>
 
-  <!-- FAVORITES PAGE CONTENT -->
-  <main class="section">
+  <!-- ==========================================================================
+       FAVORITES MAIN
+       ========================================================================== -->
+  <section class="fav-header">
     <div class="container">
-      
-      <div class="section-header">
-        <span class="section-tag" data-i18n="nav_favorites">Saralanganlar</span>
-        <h1 class="section-title" data-i18n="fav_title">Saralangan kurslar va mahsulotlar</h1>
-        <p class="section-subtitle" data-i18n="fav_subtitle">O'zingizga ma'qul kelgan darslarni keyinroq ko'rish uchun saqlab qo'ying</p>
-      </div>
+      <h1 class="page-title" data-i18n="fav_title">Sevimlilar Ro'yxati</h1>
+      <p class="page-subtitle" data-i18n="fav_subtitle">
+        Sizga yoqqan barcha kofelar va desertlar shu yerda jamlangan. Ularni bir bosishda savatga qo'shib buyurtma berishingiz mumkin.
+      </p>
+    </div>
+  </section>
 
-      <!-- Favorites Search Bar -->
-      <div style="max-width: 600px; margin: 0 auto 2.5rem; position: relative;">
-        <i class="fas fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.1rem;"></i>
-        <input 
-          type="text" 
-          id="favSearchInput" 
-          class="form-control" 
-          placeholder="Saralanganlar orasidan qidirish..." 
-          data-i18n-ph="search_fav_placeholder" 
-          style="padding-left: 54px; height: 54px; border-radius: var(--radius-full); font-size: 1rem; box-shadow: var(--shadow-sm);"
-        >
-      </div>
-
-      <!-- Favorites Grid -->
-      <div class="courses-grid" id="favCoursesGrid">
-        <!-- JS orqali to'ldiriladi -->
-      </div>
-
-      <!-- Empty State -->
-      <div class="empty-state" id="favEmptyState" style="display: none;">
-        <div class="empty-state-icon">
-          <i class="fas fa-heart-broken"></i>
+  <main class="fav-main">
+    <div class="container">
+      <div class="fav-toolbar" id="favToolbar">
+        <span class="fav-count" id="favCountText">0 ta mahsulot saqlangan</span>
+        <div class="fav-actions">
+          <button class="btn btn-primary" id="addAllCartBtn">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/></svg>
+            <span data-i18n="btn_add_all_cart">Hammasini savatga qo'shish</span>
+          </button>
+          <button class="btn btn-outline-danger" id="clearFavBtn">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/></svg>
+            <span data-i18n="btn_clear_fav">Ro'yxatni tozalash</span>
+          </button>
         </div>
-        <h3 class="empty-title" data-i18n="fav_empty_title">Saralanganlar ro'yxati hozircha bo'sh</h3>
-        <p class="empty-desc" data-i18n="fav_empty_desc">O'zingizga qiziq bo'lgan kurslar ustidagi yurakcha belgisini bosing.</p>
-        <a href="courses.html" class="btn btn-primary" data-i18n="fav_btn_browse">
-          <i class="fas fa-compass"></i> Kurslarni tanlash
-        </a>
       </div>
 
+      <div class="products-grid" id="favGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div id="emptyFavoritesState" style="display: none;">
+        <div class="empty-state">
+          <div class="empty-icon-circle">
+            <svg viewBox="0 0 24 24"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+          </div>
+          <h3 data-i18n="empty_fav_title">Hozircha sevimlilar yo'q</h3>
+          <p data-i18n="empty_fav_desc">Sizga ma'qul kelgan kofelarni belgilash uchun menyudan yurakcha belgisini bosing.</p>
+          <a href="menu.html" class="btn btn-primary" data-i18n="btn_browse_menu">Menyuni Ko'rish</a>
+        </div>
+      </div>
     </div>
   </main>
 
-  <!-- COURSE DETAIL MODAL -->
-  <div class="modal-overlay" id="courseDetailModal">
-    <div class="modal-content">
-      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
-      <div id="courseModalBody"></div>
-    </div>
-  </div>
-
-  <!-- GLOBAL SEARCH MODAL -->
-  <div class="modal-overlay" id="globalSearchModal">
-    <div class="modal-content" style="max-width: 650px;">
-      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
-      <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.25rem;" data-i18n="search_global_title">Tezkor qidiruv</h3>
-      <div style="position: relative; margin-bottom: 1.25rem;">
-        <i class="fas fa-search" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
-        <input 
-          type="text" 
-          id="globalSearchInput" 
-          class="form-control" 
-          placeholder="Kurs nomi, yo'nalish yoki mentor..." 
-          data-i18n-ph="search_quick_placeholder" 
-          style="padding-left: 48px; height: 50px; font-size: 1rem;" 
-          autocomplete="off"
-        >
-      </div>
-      <div id="globalSearchResults" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-        <!-- Live search items -->
-      </div>
-    </div>
-  </div>
-
   <!-- FOOTER -->
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
-            <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-            <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-badge">
+              <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+            </div>
+            <span>LUNO<small style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
           </a>
-          <p class="footer-brand-desc" data-i18n="footer_desc">
-            EduCenter — zamonaviy kasblar, professional mentorlar va amaliy loyihalarga asoslangan innovatsion o'quv markazi.
+          <p data-i18n="footer_brand_desc">
+            Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning xizmatingizdamiz.
           </p>
-          <div class="social-links">
-            <a href="https://t.me/oquvmarkazi222bot" target="_blank" class="social-btn"><i class="fab fa-telegram-plane"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-          </div>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_quick_links">Tezkor havolalar</h4>
-          <div class="footer-menu">
-            <a href="index.html" class="footer-menu-link" data-i18n="nav_home">Bosh sahifa</a>
-            <a href="courses.html" class="footer-menu-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
-            <a href="about.html" class="footer-menu-link" data-i18n="nav_about">Biz haqimizda</a>
-            <a href="favorites.html" class="footer-menu-link" data-i18n="nav_favorites">Saralanganlar</a>
-            <a href="cart.html" class="footer-menu-link" data-i18n="nav_cart">Savatcha</a>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav">Sahifalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav_home">Bosh sahifa</a></li>
+            <li><a href="menu.html" data-i18n="nav_menu">Menyu</a></li>
+            <li><a href="favorites.html" data-i18n="nav_favorites">Sevimlilar</a></li>
+            <li><a href="cart.html" data-i18n="nav_cart">Savat</a></li>
+            <li><a href="about.html" data-i18n="nav_about">Biz haqimizda</a></li>
+          </ul>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_courses_title">Yo'nalishlar</h4>
-          <div class="footer-menu">
-            <a href="courses.html" class="footer-menu-link">Frontend Dasturlash</a>
-            <a href="courses.html" class="footer-menu-link">Python & Backend</a>
-            <a href="courses.html" class="footer-menu-link">Grafik & UI/UX Dizayn</a>
-            <a href="courses.html" class="footer-menu-link">IELTS & General English</a>
-            <a href="courses.html" class="footer-menu-link">Robototexnika & IT Kids</a>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_hours">Ish Vaqti</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">Dush - Juma: 08:00 - 23:00</li>
+            <li style="color:var(--text-secondary);">Shanba - Yak: 09:00 - 00:00</li>
+            <li style="color:var(--accent); font-weight:700;">Yetkazib berish: 24/7</li>
+          </ul>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_contact_title">Aloqa markazi</h4>
-          <div class="footer-menu" style="gap: 1rem;">
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-top: 4px;"></i>
-              <span>Toshkent sh., Yunusobod t., Amir Temur ko'chasi 107-B</span>
-            </div>
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fas fa-phone-alt" style="color: var(--primary);"></i>
-              <a href="tel:+998712001122" style="color: inherit;">+998 71 200 11 22</a>
-            </div>
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fab fa-telegram" style="color: #229ED9;"></i>
-              <a href="https://t.me/oquvmarkazi222bot" target="_blank" style="color: inherit;">@oquvmarkazi222bot</a>
-            </div>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact">Manzil & Aloqa</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">📍 Toshkent sh., Amir Temur shoh ko'chasi, 42</li>
+            <li><a href="tel:+998712001122">📞 +998 (71) 200-11-22</a></li>
+            <li><a href="https://t.me/gooootosholbot" target="_blank" rel="noopener">✈️ Telegram Bot: @gooootosholbot</a></li>
+          </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2025-2026 EduCenter Academy. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></div>
-        <div data-i18n="footer_developer_note">GitHub, Vercel va Netlify uchun moslashtirilgan.</div>
+        <p>&copy; 2026 LUNO COFFEE. Barcha huquqlar himoyalangan.</p>
+        <p>Created for GitHub, Vercel & Netlify Deployment</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/courses-data.js"></script>
-  <script src="js/main.js"></script>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const ALL_PRODUCTS = [
+      {
+        id: 'prod-1',
+        category: 'hot',
+        price: 34000,
+        rating: 4.9,
+        reviews: 142,
+        badge: 'Bestseller',
+        image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Caramel Macchiato', ru: 'Карамельный Маккиато', en: 'Caramel Macchiato' },
+        desc: { uz: 'Espresso, qovurilgan karamel siropi, mayin ko\'pirtirilgan sut va vanil.', ru: 'Эспрессо, карамельный сироп, взбитое молоко и нежная ваниль.', en: 'Rich espresso with vanilla syrup, steamed milk, and buttery caramel drizzle.' }
+      },
+      {
+        id: 'prod-2',
+        category: 'cold',
+        price: 36000,
+        rating: 5.0,
+        reviews: 215,
+        badge: 'Top Tanlov',
+        image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Spanish Iced Latte', ru: 'Испанский Айс Латте', en: 'Spanish Iced Latte' },
+        desc: { uz: 'Kondensirlangan sut, qo\'shaloq espresso, sovuq sut va muz bo\'laklari bilan.', ru: 'Сгущенное молоко, двойной шот эспрессо, холодное молоко со льдом.', en: 'Sweetened condensed milk, double shot of espresso over chilled milk and ice.' }
+      },
+      {
+        id: 'prod-3',
+        category: 'hot',
+        price: 22000,
+        rating: 4.8,
+        reviews: 95,
+        badge: 'Klassika',
+        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Double Espresso Roast', ru: 'Двойной Эспрессо', en: 'Double Espresso Roast' },
+        desc: { uz: '100% Efiopiya Arabikasi, qalin kremali boy shokolad va sitrus ta\'mli.', ru: '100% Эфиопская арабика с густой пенкой crema и нотками шоколада.', en: '100% Ethiopian single-origin Arabica with thick crema and citrus notes.' }
+      },
+      {
+        id: 'prod-4',
+        category: 'special',
+        price: 42000,
+        rating: 4.9,
+        reviews: 184,
+        badge: 'Mualliflik',
+        image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Pistachio Velvet Latte', ru: 'Фисташковый Бархатный Латте', en: 'Pistachio Velvet Latte' },
+        desc: { uz: 'Tabiiy pista pastasi, ipakdek mayin sut, espresso va maydalangan xandon pista.', ru: 'Натуральная фисташковая паста, шелковистое молоко, эспрессо и фисташки.', en: 'Artisan pistachio cream, silky micro-foam milk, espresso and crushed pistachios.' }
+      },
+      {
+        id: 'prod-5',
+        category: 'hot',
+        price: 28000,
+        rating: 4.9,
+        reviews: 340,
+        badge: 'Mashhur',
+        image: 'https://images.unsplash.com/photo-1572442388796-11668ba67e53?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Classic Cappuccino', ru: 'Классический Капучино', en: 'Classic Cappuccino' },
+        desc: { uz: 'Klassik italiycha uslub: teng nisbatdagi espresso, issiq sut va qalin sut ko\'pigi.', ru: 'Итальянская классика: идеальный баланс эспрессо, горячего молока и бархатной пенки.', en: 'Classic Italian style: balanced espresso, steamed milk, and rich velvety foam.' }
+      },
+      {
+        id: 'prod-6',
+        category: 'cold',
+        price: 35000,
+        rating: 4.8,
+        reviews: 115,
+        badge: 'Sovuq Damlash',
+        image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Cold Brew Vanilla Foam', ru: 'Колд Брю с Ванильной Пенкой', en: 'Cold Brew Vanilla Foam' },
+        desc: { uz: '18 soat davomida sovuq damlangan kofe, Madagaskar vanilli sovuq krem bilan.', ru: 'Холодное настаивание 18 часов со сладкой холодной пенкой из натуральной ванили.', en: '18-hour slow steeped cold brew topped with Madagascar vanilla sweet cream cold foam.' }
+      },
+      {
+        id: 'prod-7',
+        category: 'hot',
+        price: 30000,
+        rating: 4.9,
+        reviews: 160,
+        badge: 'Yangi',
+        image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Flat White Velvet', ru: 'Флэт Уайт Бархатный', en: 'Flat White Velvet' },
+        desc: { uz: 'Ikki hissa ristretto va nozik mayin ko\'pirtirilgan sut (Avstraliya uslubi).', ru: 'Двойной ристретто и нежнейшая мелкопористая молочная пенка по-австралийски.', en: 'Double shot of sweet ristretto blended with micro-foamed whole milk.' }
+      },
+      {
+        id: 'prod-8',
+        category: 'cold',
+        price: 38000,
+        rating: 4.7,
+        reviews: 88,
+        badge: 'Shokoladli',
+        image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Hazelnut Mocha Frappe', ru: 'Ореховый Мокка Фраппе', en: 'Hazelnut Mocha Frappe' },
+        desc: { uz: 'Muzdek frappe, Belgiya shokoladi, funduq yong\'og\'i va qaymoqli krem.', ru: 'Освежающий фраппе с бельгийским шоколадом, фундуком и взбитыми сливками.', en: 'Chilled blended frappe with Belgian chocolate, roasted hazelnut and whipped cream.' }
+      },
+      {
+        id: 'prod-9',
+        category: 'dessert',
+        price: 45000,
+        rating: 5.0,
+        reviews: 420,
+        badge: 'Bestseller',
+        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'San Sebastian Cheesecake', ru: 'Чизкейк Сан-Себастьян', en: 'San Sebastian Cheesecake' },
+        desc: { uz: 'Ispancha kuydirilgan chizkeyk, kremli yumshoq markaz va issiq shokolad ganashi.', ru: 'Испанский обожженный чизкейк с нежнейшим кремовым центром и горячим шоколадом.', en: 'Basque burnt cheesecake with a creamy melt-in-mouth center and dark chocolate ganache.' }
+      },
+      {
+        id: 'prod-10',
+        category: 'dessert',
+        price: 26000,
+        rating: 4.8,
+        reviews: 215,
+        badge: 'Fransuzcha',
+        image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Almond Croissant', ru: 'Миндальный Круассан', en: 'Almond Croissant' },
+        desc: { uz: 'Fransuzcha qatlama xamir, nozik franjipan bodom kremi va qovurilgan bodom parraklari.', ru: 'Французский слоеный круассан с миндальным кремом франжипан и лепестками миндаля.', en: 'Buttery French croissant filled with rich almond frangipane and toasted sliced almonds.' }
+      },
+      {
+        id: 'prod-11',
+        category: 'dessert',
+        price: 39000,
+        rating: 4.9,
+        reviews: 178,
+        badge: 'Italyancha',
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Tiramisu Tradizionale', ru: 'Классический Тирамису', en: 'Tiramisu Tradizionale' },
+        desc: { uz: 'Savoyardi pechenyesi, espresso va maskarpone kremidan tayyorlangan an\'anaviy desert.', ru: 'Классический итальянский десерт с савоярди, пропитанными эспрессо, и сыром маскарпоне.', en: 'Traditional Italian dessert with espresso-soaked ladyfingers and whipped mascarpone cream.' }
+      },
+      {
+        id: 'prod-12',
+        category: 'special',
+        price: 37000,
+        rating: 4.8,
+        reviews: 132,
+        badge: 'Kioto Matchasi',
+        image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=800&q=80',
+        name: { uz: 'Ceremonial Matcha Latte', ru: 'Церемониальный Матча Латте', en: 'Ceremonial Matcha Latte' },
+        desc: { uz: 'Kiotodan keltirilgan oliy navli yashil matcha choyi, suli suti va vanil.', ru: 'Церемониальный зеленый чай матча из Киото, овсяное молоко и нотка ванили.', en: 'Ceremonial grade green matcha from Kyoto whisked with oat milk and subtle vanilla.' }
+      }
+    ];
+
+    const TRANSLATIONS = {
+      uz: {
+        nav_home: "Bosh sahifa",
+        nav_menu: "Menyu",
+        nav_favorites: "Sevimlilar",
+        nav_cart: "Savat",
+        nav_about: "Biz haqimizda",
+        fav_title: "Sevimlilar Ro'yxati",
+        fav_subtitle: "Sizga yoqqan barcha kofelar va desertlar shu yerda jamlangan. Ularni bir bosishda savatga qo'shib buyurtma berishingiz mumkin.",
+        btn_add_all_cart: "Hammasini savatga qo'shish",
+        btn_clear_fav: "Ro'yxatni tozalash",
+        empty_fav_title: "Hozircha sevimlilar yo'q",
+        empty_fav_desc: "Sizga ma'qul kelgan kofelarni saqlash uchun menyudan yurakcha belgisini bosing.",
+        btn_browse_menu: "Menyuni Ko'rish",
+        add_to_cart: "Savatga",
+        footer_brand_desc: "Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning xizmatingizdamiz.",
+        footer_nav: "Sahifalar",
+        footer_hours: "Ish Vaqti",
+        footer_contact: "Manzil & Aloqa",
+        toast_added_cart: "Savatga qo'shildi!",
+        toast_all_added: "Barcha sevimlilar savatga qo'shildi!",
+        toast_removed_fav: "Sevimlilardan o'chirildi",
+        toast_cleared_fav: "Sevimlilar ro'yxati tozalandi"
+      },
+      ru: {
+        nav_home: "Главная",
+        nav_menu: "Меню",
+        nav_favorites: "Избранное",
+        nav_cart: "Корзина",
+        nav_about: "О нас",
+        fav_title: "Список Избранного",
+        fav_subtitle: "Все понравившиеся вам напитки и десерты собраны здесь. Добавляйте в корзину в один клик.",
+        btn_add_all_cart: "Добавить все в корзину",
+        btn_clear_fav: "Очистить список",
+        empty_fav_title: "В избранном пока пусто",
+        empty_fav_desc: "Нажмите на сердечко в карточке товара в меню, чтобы сохранить любимые напитки.",
+        btn_browse_menu: "Перейти в меню",
+        add_to_cart: "В корзину",
+        footer_brand_desc: "Свежая обжарка каждый день, авторские напитки и теплая атмосфера для ценителей настоящего кофе.",
+        footer_nav: "Навигация",
+        footer_hours: "Часы Работы",
+        footer_contact: "Контакты & Адрес",
+        toast_added_cart: "Добавлено в корзину!",
+        toast_all_added: "Все избранные товары добавлены в корзину!",
+        toast_removed_fav: "Удалено из избранного",
+        toast_cleared_fav: "Список избранного очищен"
+      },
+      en: {
+        nav_home: "Home",
+        nav_menu: "Menu",
+        nav_favorites: "Favorites",
+        nav_cart: "Cart",
+        nav_about: "About Us",
+        fav_title: "Saved Favorites",
+        fav_subtitle: "All your hand-picked coffees and desserts saved in one place. Add them to your cart in a single click.",
+        btn_add_all_cart: "Add All to Cart",
+        btn_clear_fav: "Clear Favorites",
+        empty_fav_title: "Your favorites list is empty",
+        empty_fav_desc: "Tap the heart icon on any product in our menu to save your favorite drinks here.",
+        btn_browse_menu: "Explore Menu",
+        add_to_cart: "Add to Cart",
+        footer_brand_desc: "Small-batch daily roasted specialty coffee, artisan drinks, and a warm sanctuary for true coffee lovers.",
+        footer_nav: "Navigation",
+        footer_hours: "Opening Hours",
+        footer_contact: "Contact & Location",
+        toast_added_cart: "Added to cart!",
+        toast_all_added: "All favorites added to cart!",
+        toast_removed_fav: "Removed from favorites",
+        toast_cleared_fav: "Favorites cleared"
+      }
+    };
+
+    const Storage = {
+      getTheme() { return localStorage.getItem('coffee_theme') || 'dark'; },
+      setTheme(t) { localStorage.setItem('coffee_theme', t); },
+      getLang() { return localStorage.getItem('coffee_lang') || 'uz'; },
+      setLang(l) { localStorage.setItem('coffee_lang', l); },
+      getCart() {
+        try { return JSON.parse(localStorage.getItem('coffee_cart')) || []; }
+        catch(e) { return []; }
+      },
+      setCart(c) { localStorage.setItem('coffee_cart', JSON.stringify(c)); },
+      getFavorites() {
+        try { return JSON.parse(localStorage.getItem('coffee_favorites')) || []; }
+        catch(e) { return []; }
+      },
+      setFavorites(f) { localStorage.setItem('coffee_favorites', JSON.stringify(f)); }
+    };
+
+    const FavApp = {
+      lang: 'uz',
+      theme: 'dark',
+
+      init() {
+        this.lang = Storage.getLang();
+        this.theme = Storage.getTheme();
+
+        this.applyTheme(this.theme);
+        this.applyLang(this.lang);
+        this.updateBadges();
+        this.renderFavorites();
+        this.setupEventListeners();
+      },
+
+      applyTheme(theme) {
+        this.theme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        Storage.setTheme(theme);
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+          icon.innerHTML = theme === 'light'
+            ? '<path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/>'
+            : '<path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z"/>';
+        }
+      },
+
+      toggleTheme() {
+        this.applyTheme(this.theme === 'dark' ? 'light' : 'dark');
+      },
+
+      applyLang(lang) {
+        this.lang = lang;
+        Storage.setLang(lang);
+        document.documentElement.lang = lang;
+        document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+
+        document.querySelectorAll('.lang-option').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        const dict = TRANSLATIONS[lang] || TRANSLATIONS.uz;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.innerHTML = dict[key];
+        });
+
+        this.renderFavorites();
+      },
+
+      updateBadges() {
+        const cart = Storage.getCart();
+        const totalCartItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+        const cartBadge = document.getElementById('cartBadge');
+        if (cartBadge) cartBadge.textContent = totalCartItems;
+
+        const favs = Storage.getFavorites();
+        const favBadge = document.getElementById('favBadge');
+        if (favBadge) favBadge.textContent = favs.length;
+      },
+
+      renderFavorites() {
+        const favIds = Storage.getFavorites();
+        const grid = document.getElementById('favGrid');
+        const emptyState = document.getElementById('emptyFavoritesState');
+        const toolbar = document.getElementById('favToolbar');
+        const countText = document.getElementById('favCountText');
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+
+        const favProducts = ALL_PRODUCTS.filter(p => favIds.includes(p.id));
+
+        if (favProducts.length === 0) {
+          toolbar.style.display = 'none';
+          grid.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        toolbar.style.display = 'flex';
+        emptyState.style.display = 'none';
+        countText.textContent = `${favProducts.length} ta mahsulot saqlangan`;
+
+        grid.innerHTML = favProducts.map(p => {
+          const name = p.name[this.lang] || p.name.uz;
+          const desc = p.desc[this.lang] || p.desc.uz;
+          const formattedPrice = p.price.toLocaleString('uz-UZ');
+
+          return `
+            <div class="product-card" data-id="${p.id}">
+              <div class="product-img-wrapper">
+                <img src="${p.image}" alt="${name}" loading="lazy">
+                <span class="product-badge">${p.badge}</span>
+                <button class="remove-fav-btn" onclick="FavApp.removeFavorite('${p.id}')" title="Sevimlilardan o'chirish">
+                  <svg viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
+                </button>
+              </div>
+              <div class="product-content">
+                <div class="product-rating">
+                  <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                  <span>${p.rating} (${p.reviews})</span>
+                </div>
+                <h3 class="product-title">${name}</h3>
+                <p class="product-desc">${desc}</p>
+                <div class="product-footer">
+                  <div class="product-price">${formattedPrice} <small>so'm</small></div>
+                  <button class="add-cart-btn" onclick="FavApp.addToCart('${p.id}')">
+                    <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+                    <span>${dict.add_to_cart || "Savatga"}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+
+      removeFavorite(productId) {
+        let favs = Storage.getFavorites();
+        favs = favs.filter(id => id !== productId);
+        Storage.setFavorites(favs);
+        this.updateBadges();
+        this.renderFavorites();
+
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        this.showToast(dict.toast_removed_fav, 'info');
+      },
+
+      clearAllFavorites() {
+        if (!confirm("Barcha sevimlilarni o'chirishni istaysizmi?")) return;
+        Storage.setFavorites([]);
+        this.updateBadges();
+        this.renderFavorites();
+
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        this.showToast(dict.toast_cleared_fav, 'info');
+      },
+
+      addToCart(productId) {
+        let cart = Storage.getCart();
+        const existing = cart.find(item => item.id === productId);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ id: productId, qty: 1 });
+        }
+        Storage.setCart(cart);
+        this.updateBadges();
+
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        this.showToast(dict.toast_added_cart, 'success');
+      },
+
+      addAllToCart() {
+        const favIds = Storage.getFavorites();
+        if (favIds.length === 0) return;
+
+        let cart = Storage.getCart();
+        favIds.forEach(id => {
+          const existing = cart.find(item => item.id === id);
+          if (existing) {
+            existing.qty += 1;
+          } else {
+            cart.push({ id, qty: 1 });
+          }
+        });
+
+        Storage.setCart(cart);
+        this.updateBadges();
+
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        this.showToast(dict.toast_all_added, 'success');
+      },
+
+      showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <svg viewBox="0 0 24 24" style="fill:currentColor;"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/></svg>
+          <span>${message}</span>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.animation = 'toastOut 0.3s forwards ease';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      },
+
+      setupEventListeners() {
+        document.getElementById('themeToggleBtn').addEventListener('click', () => this.toggleTheme());
+
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        langBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langDropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => langDropdown.classList.remove('open'));
+        document.querySelectorAll('.lang-option').forEach(opt => {
+          opt.addEventListener('click', () => {
+            this.applyLang(opt.dataset.lang);
+            langDropdown.classList.remove('open');
+          });
+        });
+
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        mobileBtn.addEventListener('click', () => mobileDrawer.classList.toggle('open'));
+
+        document.getElementById('addAllCartBtn').addEventListener('click', () => this.addAllToCart());
+        document.getElementById('clearFavBtn').addEventListener('click', () => this.clearAllFavorites());
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => FavApp.init());
+  </script>
 </body>
 </html>

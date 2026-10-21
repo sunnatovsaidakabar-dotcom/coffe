@@ -3,280 +3,1399 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biz haqimizda — EduCenter Academy</title>
-  <meta name="description" content="EduCenter Academy missiyasi, malakali ustozlar jamoasi va xalqaro ta'lim standartlari haqida.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <title>LUNO COFFEE — Biz Haqimizda & Bog'lanish | Specialty Kofe</title>
+  <meta name="description" content="Luno Coffee tarixi, falsafasi, professional baristalar jamoasi va aloqa ma'lumotlari. Toshkent markazidagi haqiqiy specialty kofe maydoni.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary: #0e0a07;
+      --bg-secondary: #17110c;
+      --bg-card: #1f1711;
+      --bg-card-hover: #291f17;
+      --text-primary: #f8f4ee;
+      --text-secondary: #bdaea1;
+      --text-muted: #857466;
+      --accent: #d4a373;
+      --accent-hover: #c58f5e;
+      --accent-glow: rgba(212, 163, 115, 0.28);
+      --accent-subtle: rgba(212, 163, 115, 0.12);
+      --gold: #e6b800;
+      --gold-glow: rgba(230, 184, 0, 0.25);
+      --border: rgba(212, 163, 115, 0.16);
+      --border-hover: rgba(212, 163, 115, 0.45);
+      --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+      --glass-bg: rgba(20, 14, 10, 0.85);
+      --glass-border: rgba(212, 163, 115, 0.2);
+      --danger: #ef4444;
+      --success: #10b981;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #faf6f0;
+      --bg-secondary: #f3ebe0;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --text-primary: #2a1810;
+      --text-secondary: #5e4635;
+      --text-muted: #917c6b;
+      --accent: #b0723a;
+      --accent-hover: #965f2e;
+      --accent-glow: rgba(176, 114, 58, 0.2);
+      --accent-subtle: rgba(176, 114, 58, 0.1);
+      --gold: #c99300;
+      --gold-glow: rgba(201, 147, 0, 0.2);
+      --border: rgba(94, 70, 53, 0.16);
+      --border-hover: rgba(176, 114, 58, 0.5);
+      --card-shadow: 0 10px 30px rgba(74, 44, 29, 0.08);
+      --glass-bg: rgba(250, 246, 240, 0.88);
+      --glass-border: rgba(176, 114, 58, 0.22);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    img { max-width: 100%; height: auto; display: block; }
+    button, input, textarea { font-family: inherit; color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px var(--accent-glow);
+      color: #fff;
+    }
+
+    .logo-badge svg { width: 24px; height: 24px; fill: currentColor; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active { color: var(--accent); }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .icon-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      min-width: 19px;
+      height: 19px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid var(--bg-primary);
+    }
+
+    .lang-switcher { position: relative; }
+
+    .lang-select-btn {
+      height: 42px;
+      padding: 0 14px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+      padding: 6px;
+      min-width: 130px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 100;
+    }
+
+    .lang-dropdown.open { display: flex; }
+
+    .lang-option {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .lang-option:hover, .lang-option.active {
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--card-shadow);
+      z-index: 999;
+    }
+
+    .mobile-drawer.open { display: flex; }
+    .mobile-drawer .nav-link { font-size: 1.1rem; padding: 10px 0; border-bottom: 1px solid var(--border); }
+
+    /* ==========================================================================
+       HERO & STORY SECTION
+       ========================================================================== */
+    .about-hero {
+      padding: 70px 0 60px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, var(--accent-subtle), transparent 70%);
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Story Section */
+    .story-block {
+      padding: 70px 0;
+    }
+
+    .story-block-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .story-text h2 {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .story-text p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .story-img-showcase {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-hover);
+      aspect-ratio: 4 / 3.5;
+    }
+
+    .story-img-showcase img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Quality Pillars Grid */
+    .pillars-section {
+      padding: 70px 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 25px var(--accent-glow);
+    }
+
+    .pillar-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: var(--accent-subtle);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-icon svg { width: 30px; height: 30px; fill: currentColor; }
+
+    .pillar-card h3 { font-size: 1.2rem; font-weight: 700; }
+    .pillar-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Baristas Team */
+    .team-section {
+      padding: 80px 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .barista-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .barista-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--card-shadow);
+      border-color: var(--border-hover);
+    }
+
+    .barista-photo {
+      aspect-ratio: 4 / 3.8;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .barista-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .barista-card:hover .barista-photo img {
+      transform: scale(1.06);
+    }
+
+    .barista-info {
+      padding: 24px;
+    }
+
+    .barista-info h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .barista-role {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .barista-info p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       CONTACT & TELEGRAM FEEDBACK FORM
+       ========================================================================== */
+    .contact-section {
+      padding: 80px 0 100px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .contact-info-panel h2 {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--accent-subtle);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item-icon svg { width: 22px; height: 22px; fill: currentColor; }
+
+    .contact-item h5 { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+    .contact-item p { color: var(--text-secondary); font-size: 0.95rem; }
+
+    .map-preview {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 200px;
+      margin-top: 10px;
+    }
+
+    .map-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Contact Form Card */
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-form-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .form-control {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .btn-submit-contact {
+      height: 50px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px var(--accent-glow);
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    .btn-submit-contact:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit-contact:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 70px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--accent); padding-left: 4px; }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      animation: toastIn 0.35s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .toast.success { border-color: var(--success); }
+    .toast.error { border-color: var(--danger); }
+    .toast svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    @keyframes toastIn { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toastOut { to { transform: translateY(50px); opacity: 0; } }
+
+    @media (max-width: 992px) {
+      .story-block-grid, .contact-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .page-title { font-size: 2.2rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container nav-wrapper">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-        <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-badge">
+          <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+        </div>
+        <span>LUNO<small style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
-        <a href="courses.html" class="nav-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
-        <a href="about.html" class="nav-link active" data-i18n="nav_about">Biz haqimizda</a>
-        <a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Saralanganlar</a>
-        <a href="cart.html" class="nav-link" data-i18n="nav_cart">Savatcha</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a></li>
+          <li><a href="menu.html" class="nav-link" data-i18n="nav_menu">Menyu</a></li>
+          <li><a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Sevimlilar</a></li>
+          <li><a href="cart.html" class="nav-link" data-i18n="nav_cart">Savat</a></li>
+          <li><a href="about.html" class="nav-link active" data-i18n="nav_about">Biz haqimizda</a></li>
+        </ul>
       </nav>
 
-      <div class="header-actions">
-        <!-- Global Search Button -->
-        <button class="icon-btn" id="globalSearchBtn" title="Qidiruv">
-          <i class="fas fa-search"></i>
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Mavzuni almashtirish">
+          <svg id="themeIcon" viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/></svg>
         </button>
 
         <!-- Language Switcher -->
-        <div class="lang-selector">
-          <button class="lang-btn" id="langSelectorBtn" title="Tilni tanlash">
-            <i class="fas fa-globe"></i>
+        <div class="lang-switcher">
+          <button class="lang-select-btn" id="langBtn">
             <span id="currentLangLabel">UZ</span>
-            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M7,10L12,15L17,10H7Z"/></svg>
           </button>
           <div class="lang-dropdown" id="langDropdown">
-            <button class="lang-item active" data-lang="uz">🇺🇿 O'zbekcha</button>
-            <button class="lang-item" data-lang="ru">🇷🇺 Русский</button>
-            <button class="lang-item" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option active" data-lang="uz">🇺🇿 O'zbekcha</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
           </div>
         </div>
 
-        <!-- Theme Toggle -->
-        <button class="icon-btn" id="themeToggleBtn" title="Mavzuni almashtirish">
-          <i class="fas fa-sun theme-toggle-icon"></i>
-        </button>
-
         <!-- Favorites Icon -->
-        <a href="favorites.html" class="icon-btn" title="Saralanganlar">
-          <i class="fas fa-heart"></i>
-          <span class="counter-badge fav-count-badge" style="display: none;">0</span>
+        <a href="favorites.html" class="icon-btn" aria-label="Sevimlilar">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+          <span class="icon-badge" id="favBadge">0</span>
         </a>
 
         <!-- Cart Icon -->
-        <a href="cart.html" class="icon-btn" title="Savatcha">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="counter-badge cart-count-badge" style="display: none;">0</span>
+        <a href="cart.html" class="icon-btn" aria-label="Savat">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/></svg>
+          <span class="icon-badge" id="cartBadge">0</span>
         </a>
 
-        <!-- Mobile Burger -->
-        <button class="mobile-toggle" id="mobileMenuToggle" title="Menyu">
-          <i class="fas fa-bars"></i>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor;"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg>
         </button>
       </div>
     </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
+      <a href="menu.html" class="nav-link" data-i18n="nav_menu">Menyu</a>
+      <a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Sevimlilar</a>
+      <a href="cart.html" class="nav-link" data-i18n="nav_cart">Savat</a>
+      <a href="about.html" class="nav-link active" data-i18n="nav_about">Biz haqimizda</a>
+    </div>
   </header>
 
-  <!-- ABOUT CONTENT -->
-  <main>
-    <!-- Story Section -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag" data-i18n="about_title">Biz haqimizda</span>
-          <h1 class="section-title" data-i18n="about_story_title">Bizning missiyamiz va maqsadimiz</h1>
-          <p class="section-subtitle" data-i18n="about_subtitle">Kelajak avlodga sifatli va amaliy ta'lim berish bizning oliy maqsadimizdir</p>
-        </div>
+  <!-- ==========================================================================
+       HERO ABOUT
+       ========================================================================== -->
+  <section class="about-hero">
+    <div class="container">
+      <span class="section-tag" data-i18n="about_tag">Tariximiz va Falsafamiz</span>
+      <h1 class="page-title" data-i18n="about_title">Kofe San'ati va Ilhom Makoni</h1>
+      <p class="page-subtitle" data-i18n="about_subtitle">
+        2018-yilda asos solingan Luno Coffee Toshkentda yuqori sifatli kofe madaniyatini rivojlantirishga bag'ishlangan.
+      </p>
+    </div>
+  </section>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; margin-bottom: 5rem;">
-          <div>
-            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem;" data-i18n="about_story_p1">
-              EduCenter Academy 2020-yilda yoshlarni eng zamonaviy va yuqori daromadli kasblarga yo'naltirish maqsadida tashkil etilgan. Biz nazariy yodlashdan ko'ra amaliy ko'nikmalarni birinchi o'ringa qo'yamiz.
-            </p>
-            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 2rem;" data-i18n="about_story_p2">
-              O'tgan davr mobaynida 4,500 dan ortiq yoshlar markazimizni muvaffaqiyatli tamomlab, bugungi kunda mahalliy va xorijiy IT kompaniyalarda, banklarda va dizayn agentliklarida faoliyat yuritmoqda.
-            </p>
-
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;">
-              <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                <div style="font-size: 1.75rem; font-weight: 800; color: var(--primary); font-family: var(--font-heading);">5+ Yil</div>
-                <div style="font-size: 0.85rem; color: var(--text-subtle);">Muvaffaqiyatli tajriba</div>
-              </div>
-              <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                <div style="font-size: 1.75rem; font-weight: 800; color: var(--accent-emerald); font-family: var(--font-heading);">4,500+</div>
-                <div style="font-size: 0.85rem; color: var(--text-subtle);">Bitiruvchilar soni</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="EduCenter Campus" style="width: 100%; height: 420px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-          </div>
-        </div>
+  <!-- STORY DETAILS -->
+  <section class="story-block">
+    <div class="container story-block-grid">
+      <div class="story-text">
+        <h2 data-i18n="story_head">Efiopiya Tog'laridan Sizning Finjoningizgacha</h2>
+        <p data-i18n="story_p1">
+          Bizning sayohatimiz eng yaxshi kofe donalarini izlash bilan boshlangan. Biz har yili Afrika va Janubiy Amerikaning baland tog'li hududlaridagi ekologik plantatsiyalarga tashrif buyuramiz va faqat 84 balldan yuqori bo'lgan Specialty toifadagi donalarni tanlab olamiz.
+        </p>
+        <p data-i18n="story_p2">
+          Donalarni Toshkentdagi zamonaviy Giesen qovurish uskunamizda har kuni tongda yangi qovuramiz. Natijada har bir ichimlik tabiiy shirinlik, mevali nordonlik va boy shokolad notasini o'zida saqlab qoladi.
+        </p>
       </div>
-    </section>
 
-    <!-- MENTORS SECTION -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag" data-i18n="mentors_title">Bizning ustozlar</span>
-          <h2 class="section-title" data-i18n="mentors_subtitle">O'z sohasida 5+ yillik xalqaro tajribaga ega yetakchi mutaxassislar</h2>
-        </div>
-
-        <div class="mentors-grid" id="aboutMentorsGrid">
-          <!-- JS orqali to'ldiriladi -->
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section class="section">
-      <div class="container" style="max-width: 860px;">
-        <div class="section-header">
-          <span class="section-tag" data-i18n="faq_title">FAQ</span>
-          <h2 class="section-title" data-i18n="faq_subtitle">Tez-tez beriladigan savollarga aniq javoblar</h2>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <details style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; cursor: pointer;">
-            <summary style="font-weight: 700; font-size: 1.05rem; color: var(--text-main); outline: none;">
-              Kursni tugatgach ish topish kafolatlanadimi?
-            </summary>
-            <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-              Ha, bizning "Karyera markazi" eng yaxshi bitiruvchilarni 50 dan ortiq hamkor kompaniyalarga (EPAM, IT Park rezidentlari, banklar) suhbatga yuboradi va rezyumeni tayyorlashda yordam beradi.
-            </p>
-          </details>
-
-          <details style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; cursor: pointer;">
-            <summary style="font-weight: 700; font-size: 1.05rem; color: var(--text-main); outline: none;">
-              Darslar qaysi vaqtlarda bo'lib o'tadi?
-            </summary>
-            <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-              Darslar ertalabki (09:00 - 12:00), kunduzgi (14:00 - 17:00) va kechki (19:00 - 21:30) guruhlarda tashkil etiladi. Talabalar va ishlaydiganlar uchun kechki guruhlar juda qulay.
-            </p>
-          </details>
-
-          <details style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; cursor: pointer;">
-            <summary style="font-weight: 700; font-size: 1.05rem; color: var(--text-main); outline: none;">
-              To'lovni bo'lib to'lash imkoni bormi?
-            </summary>
-            <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-              Albatta! Kurs to'lovini har oy bo'lib yoki Click / Payme orqali qulay shaklda to'lashingiz mumkin. Butun kurs uchun birdan to'langanda esa qo'shimcha 15% chegirma beriladi.
-            </p>
-          </details>
-
-          <details style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; cursor: pointer;">
-            <summary style="font-weight: 700; font-size: 1.05rem; color: var(--text-main); outline: none;">
-              Birinchi sinov darsi bepulmi?
-            </summary>
-            <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-              Ha, siz xohlagan kursimizning ilk darsiga bepul tashrif buyurib, o'quv muhiti va o'qituvchi bilan tanishishingiz mumkin.
-            </p>
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- GLOBAL SEARCH MODAL -->
-  <div class="modal-overlay" id="globalSearchModal">
-    <div class="modal-content" style="max-width: 650px;">
-      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
-      <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.25rem;" data-i18n="search_global_title">Tezkor qidiruv</h3>
-      <div style="position: relative; margin-bottom: 1.25rem;">
-        <i class="fas fa-search" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
-        <input 
-          type="text" 
-          id="globalSearchInput" 
-          class="form-control" 
-          placeholder="Kurs nomi, yo'nalish yoki mentor..." 
-          data-i18n-ph="search_quick_placeholder" 
-          style="padding-left: 48px; height: 50px; font-size: 1rem;" 
-          autocomplete="off"
-        >
-      </div>
-      <div id="globalSearchResults" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-        <!-- Live search items -->
+      <div class="story-img-showcase">
+        <img src="https://images.unsplash.com/photo-1509785307050-d4066910ec1e?auto=format&fit=crop&w=1000&q=80" alt="Specialty Coffee Roasting">
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- COURSE DETAIL MODAL -->
-  <div class="modal-overlay" id="courseDetailModal">
-    <div class="modal-content">
-      <button class="modal-close-btn" title="Yopish"><i class="fas fa-times"></i></button>
-      <div id="courseModalBody"></div>
+  <!-- 4 QUALITY PILLARS -->
+  <section class="pillars-section">
+    <div class="container">
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/></svg>
+          </div>
+          <h3 data-i18n="pil_1_title">Direct Trade</h3>
+          <p data-i18n="pil_1_desc">Dilerlarsiz, to'g'ridan-to'g'ri fermerlar bilan hamkorlik qilib eng toza va xolis xomashyo olamiz.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12,3C17.5,3 22,6.58 22,11C22,15.42 17.5,19 12,19C10.76,19 9.57,18.82 8.47,18.5C5.55,21 2,21 2,21C4.33,18.67 4.7,17.1 4.7,17.1C3,15.42 2,13.33 2,11C2,6.58 6.5,3 12,3Z"/></svg>
+          </div>
+          <h3 data-i18n="pil_2_title">Micro-Roasting</h3>
+          <p data-i18n="pil_2_desc">Kichik partiyalarda qovurish har bir donaning o'ziga xos ta'm profilini saqlab qolish imkonini beradi.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+          </div>
+          <h3 data-i18n="pil_3_title">SCA Mutaxassislar</h3>
+          <p data-i18n="pil_3_desc">Jamoamiz xalqaro Specialty Coffee Association sertifikatiga ega va doimiy malaka oshiradi.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg>
+          </div>
+          <h3 data-i18n="pil_4_title">Ekologik Mas'uliyat</h3>
+          <p data-i18n="pil_4_desc">Biz 100% parchalanadigan bio-stakanlar va qayta ishlanadigan qadoqlardan foydalanamiz.</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- BARISTAS TEAM -->
+  <section class="team-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto 50px;">
+        <span class="section-tag" data-i18n="team_tag">Bizning Jamoa</span>
+        <h2 style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800;" data-i18n="team_title">Kofe Sehrgarlari</h2>
+      </div>
+
+      <div class="team-grid">
+        <div class="barista-card">
+          <div class="barista-photo">
+            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=700&q=80" alt="Sardor">
+          </div>
+          <div class="barista-info">
+            <h4>Sardor Aliyev</h4>
+            <div class="barista-role" data-i18n="role_head_roaster">Bosh Roaster & Q-Grader</div>
+            <p data-i18n="bio_sardor">7 yillik tajribaga ega kofe degustatori. Donalarni qovurish profillarini yaratuvchi mutaxassis.</p>
+          </div>
+        </div>
+
+        <div class="barista-card">
+          <div class="barista-photo">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=700&q=80" alt="Nigora">
+          </div>
+          <div class="barista-info">
+            <h4>Nigora Karimova</h4>
+            <div class="barista-role" data-i18n="role_latte_art">Latte-Art Chempioni</div>
+            <p data-i18n="bio_nigora">Sut ko'pirtirish va nafis chizmalar chizish bo'yicha shahar chempioni. Mualliflik latesi ijodkori.</p>
+          </div>
+        </div>
+
+        <div class="barista-card">
+          <div class="barista-photo">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80" alt="Bobur">
+          </div>
+          <div class="barista-info">
+            <h4>Bobur Mirzayev</h4>
+            <div class="barista-role" data-i18n="role_brew_master">Filter & Cold Brew Ustasi</div>
+            <p data-i18n="bio_bobur">V60, Chemex va Aeropress orqali kofening eng mayin mevali notalarini chiqarib beradi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONTACT & TELEGRAM FEEDBACK FORM
+       ========================================================================== -->
+  <section class="contact-section">
+    <div class="container contact-grid">
+      
+      <!-- Left Contact Info -->
+      <div class="contact-info-panel">
+        <div>
+          <span class="section-tag" data-i18n="contact_tag">Aloqa & Manzil</span>
+          <h2 data-i18n="contact_heading">Biz Bilan Bog'laning Yoki Tashrif Buyuring</h2>
+          <p style="color:var(--text-secondary); margin-top:12px;" data-i18n="contact_sub">
+            Savollaringiz, takliflaringiz yoki maxsus kofe buyurtmalari bo'lsa biz doimo xursandmiz.
+          </p>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
+          </div>
+          <div>
+            <h5 data-i18n="info_address_title">Manzilimiz</h5>
+            <p>Toshkent sh., Amir Temur shoh ko'chasi, 42-uy (Markaziy park ro'parasi)</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+          </div>
+          <div>
+            <h5 data-i18n="info_phone_title">Telefon & Telegram</h5>
+            <p>+998 (71) 200-11-22 &nbsp;|&nbsp; Bot: @gooootosholbot</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
+          </div>
+          <div>
+            <h5 data-i18n="info_hours_title">Ish Tartibi</h5>
+            <p>Har kuni: 08:00 dan 23:00 gacha (Yetkazish xizmati: 24/7)</p>
+          </div>
+        </div>
+
+        <div class="map-preview">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.8837770853535!2d69.27973707658742!3d41.311158000780284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b2931f41f23%3A0x81095e06b654b845!2sAmir%20Temur%20Square!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Right Contact Form (DISPATCHES DIRECT TO TELEGRAM BOT) -->
+      <div class="contact-form-card">
+        <h3 data-i18n="form_feedback_title">Xabar Qoldiring</h3>
+        <p data-i18n="form_feedback_sub">Xabaringiz zudlik bilan Telegram botimiz orqali boshqaruvchiga yuboriladi.</p>
+
+        <form class="contact-form" id="contactTelegramForm">
+          <div class="form-group">
+            <label for="contactName" data-i18n="label_name">Ismingiz *</label>
+            <input type="text" id="contactName" class="form-control" placeholder="Diyorbek" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactPhone" data-i18n="label_phone">Telefon raqamingiz *</label>
+            <input type="tel" id="contactPhone" class="form-control" placeholder="+998 90 987 65 43" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject" data-i18n="label_subject">Mavzu</label>
+            <input type="text" id="contactSubject" class="form-control" placeholder="Hamkorlik, taklif yoki savol">
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage" data-i18n="label_message">Xabar matni *</label>
+            <textarea id="contactMessage" class="form-control" rows="4" placeholder="Fikringiz yoki savolingizni batafsil yozing..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-contact" id="contactSubmitBtn">
+            <span id="contactSubmitText" data-i18n="btn_send_telegram">Telegram orqali yuborish</span>
+            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
-            <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-            <span class="brand-text" data-i18n="brand_name">EduCenter Academy</span>
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-badge">
+              <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+            </div>
+            <span>LUNO<small style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
           </a>
-          <p class="footer-brand-desc" data-i18n="footer_desc">
-            EduCenter — zamonaviy kasblar, professional mentorlar va amaliy loyihalarga asoslangan innovatsion o'quv markazi.
+          <p data-i18n="footer_brand_desc">
+            Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning xizmatingizdamiz.
           </p>
-          <div class="social-links">
-            <a href="https://t.me/oquvmarkazi222bot" target="_blank" class="social-btn"><i class="fab fa-telegram-plane"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-          </div>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_quick_links">Tezkor havolalar</h4>
-          <div class="footer-menu">
-            <a href="index.html" class="footer-menu-link" data-i18n="nav_home">Bosh sahifa</a>
-            <a href="courses.html" class="footer-menu-link" data-i18n="nav_courses">Kurslar va Do'kon</a>
-            <a href="about.html" class="footer-menu-link" data-i18n="nav_about">Biz haqimizda</a>
-            <a href="favorites.html" class="footer-menu-link" data-i18n="nav_favorites">Saralanganlar</a>
-            <a href="cart.html" class="footer-menu-link" data-i18n="nav_cart">Savatcha</a>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav">Sahifalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav_home">Bosh sahifa</a></li>
+            <li><a href="menu.html" data-i18n="nav_menu">Menyu</a></li>
+            <li><a href="favorites.html" data-i18n="nav_favorites">Sevimlilar</a></li>
+            <li><a href="cart.html" data-i18n="nav_cart">Savat</a></li>
+            <li><a href="about.html" data-i18n="nav_about">Biz haqimizda</a></li>
+          </ul>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_courses_title">Yo'nalishlar</h4>
-          <div class="footer-menu">
-            <a href="courses.html" class="footer-menu-link">Frontend Dasturlash</a>
-            <a href="courses.html" class="footer-menu-link">Python & Backend</a>
-            <a href="courses.html" class="footer-menu-link">Grafik & UI/UX Dizayn</a>
-            <a href="courses.html" class="footer-menu-link">IELTS & General English</a>
-            <a href="courses.html" class="footer-menu-link">Robototexnika & IT Kids</a>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_hours">Ish Vaqti</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">Dush - Juma: 08:00 - 23:00</li>
+            <li style="color:var(--text-secondary);">Shanba - Yak: 09:00 - 00:00</li>
+            <li style="color:var(--accent); font-weight:700;">Yetkazib berish: 24/7</li>
+          </ul>
         </div>
 
-        <div>
-          <h4 class="footer-heading" data-i18n="footer_contact_title">Aloqa markazi</h4>
-          <div class="footer-menu" style="gap: 1rem;">
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-top: 4px;"></i>
-              <span>Toshkent sh., Yunusobod t., Amir Temur ko'chasi 107-B</span>
-            </div>
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fas fa-phone-alt" style="color: var(--primary);"></i>
-              <a href="tel:+998712001122" style="color: inherit;">+998 71 200 11 22</a>
-            </div>
-            <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 0.9rem;">
-              <i class="fab fa-telegram" style="color: #229ED9;"></i>
-              <a href="https://t.me/oquvmarkazi222bot" target="_blank" style="color: inherit;">@oquvmarkazi222bot</a>
-            </div>
-          </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact">Manzil & Aloqa</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">📍 Toshkent sh., Amir Temur shoh ko'chasi, 42</li>
+            <li><a href="tel:+998712001122">📞 +998 (71) 200-11-22</a></li>
+            <li><a href="https://t.me/gooootosholbot" target="_blank" rel="noopener">✈️ Telegram Bot: @gooootosholbot</a></li>
+          </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2025-2026 EduCenter Academy. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></div>
-        <div data-i18n="footer_developer_note">GitHub, Vercel va Netlify uchun moslashtirilgan.</div>
+        <p>&copy; 2026 LUNO COFFEE. Barcha huquqlar himoyalangan.</p>
+        <p>Created for GitHub, Vercel & Netlify Deployment</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/courses-data.js"></script>
-  <script src="js/main.js"></script>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const TELEGRAM_CONFIG = {
+      botToken: '8457269190:AAHaG-zo13tdywvZjoCVPr3TqfEWqv358Ys',
+      userId: '6932874571'
+    };
+
+    const TRANSLATIONS = {
+      uz: {
+        nav_home: "Bosh sahifa",
+        nav_menu: "Menyu",
+        nav_favorites: "Sevimlilar",
+        nav_cart: "Savat",
+        nav_about: "Biz haqimizda",
+        about_tag: "Tariximiz va Falsafamiz",
+        about_title: "Kofe San'ati va Ilhom Makoni",
+        about_subtitle: "2018-yilda asos solingan Luno Coffee Toshkentda yuqori sifatli kofe madaniyatini rivojlantirishga bag'ishlangan.",
+        story_head: "Efiopiya Tog'laridan Sizning Finjoningizgacha",
+        story_p1: "Bizning sayohatimiz eng yaxshi kofe donalarini izlash bilan boshlangan. Biz har yili Afrika va Janubiy Amerikaning baland tog'li hududlaridagi ekologik plantatsiyalarga tashrif buyuramiz va faqat 84 balldan yuqori bo'lgan Specialty toifadagi donalarni tanlab olamiz.",
+        story_p2: "Donalarni Toshkentdagi zamonaviy Giesen qovurish uskunamizda har kuni tongda yangi qovuramiz. Natijada har bir ichimlik tabiiy shirinlik, mevali nordonlik va boy shokolad notasini o'zida saqlab qoladi.",
+        pil_1_title: "Direct Trade",
+        pil_1_desc: "Dilerlarsiz, to'g'ridan-to'g'ri fermerlar bilan hamkorlik qilib eng toza va xolis xomashyo olamiz.",
+        pil_2_title: "Micro-Roasting",
+        pil_2_desc: "Kichik partiyalarda qovurish har bir donaning o'ziga xos ta'm profilini saqlab qolish imkonini beradi.",
+        pil_3_title: "SCA Mutaxassislar",
+        pil_3_desc: "Jamoamiz xalqaro Specialty Coffee Association sertifikatiga ega va doimiy malaka oshiradi.",
+        pil_4_title: "Ekologik Mas'uliyat",
+        pil_4_desc: "Biz 100% parchalanadigan bio-stakanlar va qayta ishlanadigan qadoqlardan foydalanamiz.",
+        team_tag: "Bizning Jamoa",
+        team_title: "Kofe Sehrgarlari",
+        role_head_roaster: "Bosh Roaster & Q-Grader",
+        bio_sardor: "7 yillik tajribaga ega kofe degustatori. Donalarni qovurish profillarini yaratuvchi mutaxassis.",
+        role_latte_art: "Latte-Art Chempioni",
+        bio_nigora: "Sut ko'pirtirish va nafis chizmalar chizish bo'yicha shahar chempioni. Mualliflik latesi ijodkori.",
+        role_brew_master: "Filter & Cold Brew Ustasi",
+        bio_bobur: "V60, Chemex va Aeropress orqali kofening eng mayin mevali notalarini chiqarib beradi.",
+        contact_tag: "Aloqa & Manzil",
+        contact_heading: "Biz Bilan Bog'laning Yoki Tashrif Buyuring",
+        contact_sub: "Savollaringiz, takliflaringiz yoki maxsus kofe buyurtmalari bo'lsa biz doimo xursandmiz.",
+        info_address_title: "Manzilimiz",
+        info_phone_title: "Telefon & Telegram",
+        info_hours_title: "Ish Tartibi",
+        form_feedback_title: "Xabar Qoldiring",
+        form_feedback_sub: "Xabaringiz zudlik bilan Telegram botimiz orqali boshqaruvchiga yuboriladi.",
+        label_name: "Ismingiz *",
+        label_phone: "Telefon raqamingiz *",
+        label_subject: "Mavzu",
+        label_message: "Xabar matni *",
+        btn_send_telegram: "Telegram orqali yuborish",
+        footer_brand_desc: "Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning xizmatingizdamiz.",
+        footer_nav: "Sahifalar",
+        footer_hours: "Ish Vaqti",
+        footer_contact: "Manzil & Aloqa",
+        toast_feedback_sent: "Xabaringiz Telegram orqali adminga yuborildi! Tez orada javob beramiz."
+      },
+      ru: {
+        nav_home: "Главная",
+        nav_menu: "Меню",
+        nav_favorites: "Избранное",
+        nav_cart: "Корзина",
+        nav_about: "О нас",
+        about_tag: "История & Философия",
+        about_title: "Искусство Кофе и Пространство Вдохновения",
+        about_subtitle: "Основанная в 2018 году, кофейня LUNO COFFEE развивает культуру спешелти кофе в Ташкенте.",
+        story_head: "С Гор Эфиопии Прямо в Вашу Чашку",
+        story_p1: "Наше путешествие началось с поиска безупречных зерен. Мы ежегодно посещаем высокогорные эко-плантации Африки и Южной Америки, отбирая только зерна с оценкой SCA выше 84 баллов.",
+        story_p2: "Мы обжариваем зерна каждое утро на голландском ростере Giesen в Ташкенте, раскрывая природную сладость, ягодную кислинку и бархатистые шоколадные оттенки.",
+        pil_1_title: "Прямой Импорт",
+        pil_1_desc: "Работаем напрямую с фермерами, поддерживая эко-плантации и получая чистейшее зерно.",
+        pil_2_title: "Микро-Обжарка",
+        pil_2_desc: "Обжарка небольшими партиями позволяет максимально точно раскрыть вкусовой профиль.",
+        pil_3_title: "SCA Профессионалы",
+        pil_3_desc: "Все наши бариста обладают международными дипломами Specialty Coffee Association.",
+        pil_4_title: "Экологичность",
+        pil_4_desc: "Используем 100% биоразлагаемые стаканчики и экологичную перерабатываемую упаковку.",
+        team_tag: "Команда",
+        team_title: "Мастера Своего Дела",
+        role_head_roaster: "Шеф-Роастер & Q-Грейдер",
+        bio_sardor: "Дегустатор кофе с 7-летним опытом. Создает уникальные профили обжарки для каждого сорта.",
+        role_latte_art: "Чемпион по Латте-Арту",
+        bio_nigora: "Мастер нежнейшей молочной пены и авторских рисунков. Автор фирменных рецептов латте.",
+        role_brew_master: "Мастер Фильтр-Кофе",
+        bio_bobur: "Раскрывает тонкие цветочные ноты в V60, Chemex и освежающем авторском Cold Brew.",
+        contact_tag: "Контакты & Адрес",
+        contact_heading: "Свяжитесь с Нами или Загляните в Гости",
+        contact_sub: "Будем рады ответить на любые вопросы, предложения о сотрудничестве или отзывы.",
+        info_address_title: "Наш адрес",
+        info_phone_title: "Телефон & Telegram",
+        info_hours_title: "График работы",
+        form_feedback_title: "Напишите Нам",
+        form_feedback_sub: "Сообщение будет мгновенно доставлено управляющему через Telegram.",
+        label_name: "Ваше имя *",
+        label_phone: "Номер телефона *",
+        label_subject: "Тема",
+        label_message: "Текст сообщения *",
+        btn_send_telegram: "Отправить через Telegram",
+        footer_brand_desc: "Свежая обжарка каждый день, авторские напитки и теплая атмосфера для ценителей настоящего кофе.",
+        footer_nav: "Навигация",
+        footer_hours: "Часы Работы",
+        footer_contact: "Контакты & Адрес",
+        toast_feedback_sent: "Сообщение отправлено в Telegram администратору! Скоро ответим."
+      },
+      en: {
+        nav_home: "Home",
+        nav_menu: "Menu",
+        nav_favorites: "Favorites",
+        nav_cart: "Cart",
+        nav_about: "About Us",
+        about_tag: "Our Story & Vision",
+        about_title: "Artisanal Coffee & A Sanctuary of Inspiration",
+        about_subtitle: "Founded in 2018, Luno Coffee is dedicated to elevating specialty coffee culture in Tashkent.",
+        story_head: "From Ethiopian Highlands to Your Cup",
+        story_p1: "Our journey began with a relentless quest for pristine beans. Each year we visit high-altitude ecological plantations across Africa and Latin America, selecting only microlots scored 84+ SCA points.",
+        story_p2: "Roasted freshly every morning on our bespoke Giesen roaster in Tashkent, preserving natural sweetness, delicate fruit nuances, and luscious dark chocolate undertones.",
+        pil_1_title: "Direct Trade",
+        pil_1_desc: "Working directly with smallholder farmers ensuring transparent, sustainable, and ethical sourcing.",
+        pil_2_title: "Micro-Roasting",
+        pil_2_desc: "Small batches crafted with custom temperature curves to unlock the authentic terroir of each bean.",
+        pil_3_title: "SCA Certified Baristas",
+        pil_3_desc: "Internationally qualified baristas passionate about perfection in every single extraction.",
+        pil_4_title: "Eco Consciousness",
+        pil_4_desc: "Committed to sustainability with 100% biodegradable takeaway cups and compostable packaging.",
+        team_tag: "Our Team",
+        team_title: "The Artisans Behind The Craft",
+        role_head_roaster: "Head Roaster & Q-Grader",
+        bio_sardor: "7 years of sensory expertise. Profiles every bean to extract the pinnacle of its aromatic potential.",
+        role_latte_art: "Latte Art Champion",
+        bio_nigora: "Master of silky micro-foam texture and delicate free-pour patterns. Creator of our signature lattes.",
+        role_brew_master: "Filter & Cold Brew Master",
+        bio_bobur: "Extracts brilliant floral and tropical fruit notes via V60, Chemex, and 18-hour cold brew.",
+        contact_tag: "Contact & Location",
+        contact_heading: "Get in Touch or Visit Our Roastery",
+        contact_sub: "Whether you have inquiries, partnership ideas, or want to say hello, we'd love to hear from you.",
+        info_address_title: "Our Roastery",
+        info_phone_title: "Phone & Telegram",
+        info_hours_title: "Operating Hours",
+        form_feedback_title: "Send Us a Message",
+        form_feedback_sub: "Your inquiry will be dispatched immediately to our manager via Telegram.",
+        label_name: "Your Name *",
+        label_phone: "Phone Number *",
+        label_subject: "Subject",
+        label_message: "Your Message *",
+        btn_send_telegram: "Send via Telegram",
+        footer_brand_desc: "Small-batch daily roasted specialty coffee, artisan drinks, and a warm sanctuary for true coffee lovers.",
+        footer_nav: "Navigation",
+        footer_hours: "Opening Hours",
+        footer_contact: "Contact & Location",
+        toast_feedback_sent: "Message sent to administrator via Telegram! We will reply promptly."
+      }
+    };
+
+    const Storage = {
+      getTheme() { return localStorage.getItem('coffee_theme') || 'dark'; },
+      setTheme(t) { localStorage.setItem('coffee_theme', t); },
+      getLang() { return localStorage.getItem('coffee_lang') || 'uz'; },
+      setLang(l) { localStorage.setItem('coffee_lang', l); },
+      getCart() {
+        try { return JSON.parse(localStorage.getItem('coffee_cart')) || []; }
+        catch(e) { return []; }
+      },
+      getFavorites() {
+        try { return JSON.parse(localStorage.getItem('coffee_favorites')) || []; }
+        catch(e) { return []; }
+      }
+    };
+
+    const AboutApp = {
+      lang: 'uz',
+      theme: 'dark',
+
+      init() {
+        this.lang = Storage.getLang();
+        this.theme = Storage.getTheme();
+
+        this.applyTheme(this.theme);
+        this.applyLang(this.lang);
+        this.updateBadges();
+        this.setupEventListeners();
+      },
+
+      applyTheme(theme) {
+        this.theme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        Storage.setTheme(theme);
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+          icon.innerHTML = theme === 'light'
+            ? '<path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/>'
+            : '<path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z"/>';
+        }
+      },
+
+      toggleTheme() {
+        this.applyTheme(this.theme === 'dark' ? 'light' : 'dark');
+      },
+
+      applyLang(lang) {
+        this.lang = lang;
+        Storage.setLang(lang);
+        document.documentElement.lang = lang;
+        document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+
+        document.querySelectorAll('.lang-option').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        const dict = TRANSLATIONS[lang] || TRANSLATIONS.uz;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.innerHTML = dict[key];
+        });
+      },
+
+      updateBadges() {
+        const cart = Storage.getCart();
+        const totalCartItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+        const cartBadge = document.getElementById('cartBadge');
+        if (cartBadge) cartBadge.textContent = totalCartItems;
+
+        const favs = Storage.getFavorites();
+        const favBadge = document.getElementById('favBadge');
+        if (favBadge) favBadge.textContent = favs.length;
+      },
+
+      async sendTelegramContact(data) {
+        const url = `https://api.telegram.org/bot${TELEGRAM_CONFIG.botToken}/sendMessage`;
+        const text = `
+📩 <b>YANGI MUROJAAT / ALOQA XABARI!</b>
+━━━━━━━━━━━━━━━━━━━━
+👤 <b>Yuboruvchi:</b> ${data.name}
+📞 <b>Telefon:</b> ${data.phone}
+📌 <b>Mavzu:</b> ${data.subject || "Umumiy murojaat"}
+💬 <b>Xabar:</b>
+<i>${data.message}</i>
+━━━━━━━━━━━━━━━━━━━━
+📅 <b>Vaqt:</b> ${new Date().toLocaleDateString('uz-UZ')} ${new Date().toLocaleTimeString('uz-UZ')}
+⚡ <i>LUNO COFFEE vebsaytining "Biz haqimizda" sahifasidan</i>
+        `.trim();
+
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: TELEGRAM_CONFIG.userId,
+              text: text,
+              parse_mode: 'HTML'
+            })
+          });
+          const json = await res.json();
+          return json.ok;
+        } catch(e) {
+          console.error("Telegram contact error:", e);
+          return false;
+        }
+      },
+
+      showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <svg viewBox="0 0 24 24" style="fill:currentColor;"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/></svg>
+          <span>${message}</span>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.animation = 'toastOut 0.3s forwards ease';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      },
+
+      setupEventListeners() {
+        document.getElementById('themeToggleBtn').addEventListener('click', () => this.toggleTheme());
+
+        // Language Dropdown
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        langBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langDropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => langDropdown.classList.remove('open'));
+        document.querySelectorAll('.lang-option').forEach(opt => {
+          opt.addEventListener('click', () => {
+            this.applyLang(opt.dataset.lang);
+            langDropdown.classList.remove('open');
+          });
+        });
+
+        // Mobile drawer
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        mobileBtn.addEventListener('click', () => mobileDrawer.classList.toggle('open'));
+
+        // Contact Form
+        const form = document.getElementById('contactTelegramForm');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const submitBtn = document.getElementById('contactSubmitBtn');
+          const submitText = document.getElementById('contactSubmitText');
+          submitBtn.disabled = true;
+          submitText.textContent = "Telegramga yuborilmoqda...";
+
+          const data = {
+            name: document.getElementById('contactName').value.trim(),
+            phone: document.getElementById('contactPhone').value.trim(),
+            subject: document.getElementById('contactSubject').value.trim(),
+            message: document.getElementById('contactMessage').value.trim()
+          };
+
+          const ok = await this.sendTelegramContact(data);
+          submitBtn.disabled = false;
+          submitText.textContent = TRANSLATIONS[this.lang].btn_send_telegram;
+
+          if (ok) {
+            this.showToast(TRANSLATIONS[this.lang].toast_feedback_sent, 'success');
+            form.reset();
+          } else {
+            this.showToast("Xatolik yuz berdi. Iltimos qaytadan urining.", 'error');
+          }
+        });
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => AboutApp.init());
+  </script>
 </body>
 </html>

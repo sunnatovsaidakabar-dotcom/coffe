@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUNO COFFEE — Menyu & Katalog | Specialty Kofe va Shirinliklar</title>
+  <meta name="description" content="Luno Coffee to'liq menyusi: Issiq va sovuq kofelar, mualliflik latesi, yangi pishiriqlar va shirinliklar. Qulay qidiruv va savatga qo'shish imkoniyati.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary: #0e0a07;
+      --bg-secondary: #17110c;
+      --bg-card: #1f1711;
+      --bg-card-hover: #291f17;
+      --text-primary: #f8f4ee;
+      --text-secondary: #bdaea1;
+      --text-muted: #857466;
+      --accent: #d4a373;
+      --accent-hover: #c58f5e;
+      --accent-glow: rgba(212, 163, 115, 0.28);
+      --accent-subtle: rgba(212, 163, 115, 0.12);
+      --gold: #e6b800;
+      --gold-glow: rgba(230, 184, 0, 0.25);
+      --border: rgba(212, 163, 115, 0.16);
+      --border-hover: rgba(212, 163, 115, 0.45);
+      --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+      --glass-bg: rgba(20, 14, 10, 0.85);
+      --glass-border: rgba(212, 163, 115, 0.2);
+      --danger: #ef4444;
+      --success: #10b981;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #faf6f0;
+      --bg-secondary: #f3ebe0;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --text-primary: #2a1810;
+      --text-secondary: #5e4635;
+      --text-muted: #917c6b;
+      --accent: #b0723a;
+      --accent-hover: #965f2e;
+      --accent-glow: rgba(176, 114, 58, 0.2);
+      --accent-subtle: rgba(176, 114, 58, 0.1);
+      --gold: #c99300;
+      --gold-glow: rgba(201, 147, 0, 0.2);
+      --border: rgba(94, 70, 53, 0.16);
+      --border-hover: rgba(176, 114, 58, 0.5);
+      --card-shadow: 0 10px 30px rgba(74, 44, 29, 0.08);
+      --glass-bg: rgba(250, 246, 240, 0.88);
+      --glass-border: rgba(176, 114, 58, 0.22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button, input, select {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================================================
+       NAVBAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px var(--accent-glow);
+      color: #fff;
+    }
+
+    .logo-badge svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .icon-btn svg, .icon-btn span, .lang-select-btn svg, .lang-select-btn span {
+      pointer-events: none;
+    }
+
+    .icon-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .icon-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      min-width: 19px;
+      height: 19px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid var(--bg-primary);
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-select-btn {
+      height: 42px;
+      padding: 0 14px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+      padding: 6px;
+      min-width: 130px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 100;
+    }
+
+    .lang-dropdown.open {
+      display: flex;
+    }
+
+    .lang-option {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .lang-option:hover, .lang-option.active {
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--card-shadow);
+      z-index: 999;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer .nav-link {
+      font-size: 1.1rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ==========================================================================
+       PAGE HEADER & SEARCH TOOLBAR
+       ========================================================================== */
+    .menu-header-section {
+      padding: 50px 0 30px;
+      background: radial-gradient(circle at 50% 0%, var(--accent-subtle), transparent 70%);
+      text-align: center;
+    }
+
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .page-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+
+    /* Search & Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 16px;
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .search-input-box {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-input-box input {
+      width: 100%;
+      height: 52px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0 20px 0 52px;
+      font-size: 1rem;
+      color: var(--text-primary);
+      transition: var(--transition);
+      box-shadow: var(--card-shadow);
+    }
+
+    .search-input-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .search-input-box svg {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+      fill: currentColor;
+    }
+
+    .sort-select {
+      height: 52px;
+      padding: 0 20px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--card-shadow);
+    }
+
+    .sort-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* Category Pills */
+    .category-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cat-pill {
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    /* ==========================================================================
+       MENU GRID & PRODUCTS
+       ========================================================================== */
+    .menu-main {
+      padding-bottom: 90px;
+    }
+
+    .results-count-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--card-shadow);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .product-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img-wrapper img {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .fav-toggle-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .fav-toggle-btn:hover, .fav-toggle-btn.active {
+      background: #fff;
+      color: var(--danger);
+      transform: scale(1.1);
+    }
+
+    .fav-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .product-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .product-rating svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    .product-rating span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .product-price small {
+      font-size: 0.75rem;
+      font-family: var(--font-body);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .add-cart-btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .add-cart-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    /* Empty Search State */
+    .empty-state {
+      text-align: center;
+      padding: 70px 20px;
+      grid-column: 1 / -1;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      fill: currentColor;
+    }
+
+    .empty-state h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .btn-reset {
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-reset:hover {
+      background: var(--accent-hover);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 70px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATION
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      animation: toastIn 0.35s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .toast.success { border-color: var(--success); }
+    .toast.info { border-color: var(--accent); }
+
+    .toast svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    @keyframes toastIn { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toastOut { to { transform: translateY(50px); opacity: 0; } }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .search-row { flex-direction: column; }
+      .page-title { font-size: 2.3rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       NAVBAR
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-badge">
+          <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+        </div>
+        <span>LUNO<small style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a></li>
+          <li><a href="menu.html" class="nav-link active" data-i18n="nav_menu">Menyu</a></li>
+          <li><a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Sevimlilar</a></li>
+          <li><a href="cart.html" class="nav-link" data-i18n="nav_cart">Savat</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Mavzuni almashtirish">
+          <svg id="themeIcon" viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12.3 2a10 10 0 0 0-1.9 19.8 10 10 0 0 0 11.5-11.5c-4.4.9-8.4-2.4-9.6-8.3z"/></svg>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="lang-select-btn" id="langBtn">
+            <span id="currentLangLabel">UZ</span>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M7,10L12,15L17,10H7Z"/></svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option active" data-lang="uz">🇺🇿 O'zbekcha</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
+          </div>
+        </div>
+
+        <!-- Favorites Icon -->
+        <a href="favorites.html" class="icon-btn" aria-label="Sevimlilar">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+          <span class="icon-badge" id="favBadge">0</span>
+        </a>
+
+        <!-- Cart Icon -->
+        <a href="cart.html" class="icon-btn" aria-label="Savat">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/></svg>
+          <span class="icon-badge" id="cartBadge">0</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor;"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="nav-link" data-i18n="nav_home">Bosh sahifa</a>
+      <a href="menu.html" class="nav-link active" data-i18n="nav_menu">Menyu</a>
+      <a href="favorites.html" class="nav-link" data-i18n="nav_favorites">Sevimlilar</a>
+      <a href="cart.html" class="nav-link" data-i18n="nav_cart">Savat</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MENU HEADER & SEARCH BAR
+       ========================================================================== -->
+  <section class="menu-header-section">
+    <div class="container">
+      <h1 class="page-title" data-i18n="menu_title">Bizning Maxsus Menyuyimiz</h1>
+      <p class="page-subtitle" data-i18n="menu_subtitle">
+        Har bir ichimlik saralangan 100% Arabika donachalaridan tayyorlanadi va yangi pishiriqlar bilan taqdim etiladi.
+      </p>
+
+      <div class="filter-bar">
+        <!-- Live Search Input -->
+        <div class="search-row">
+          <div class="search-input-box">
+            <svg viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/></svg>
+            <input type="text" id="searchInput" placeholder="Kofe yoki shirinlik qidiring..." autocomplete="off">
+          </div>
+
+          <select class="sort-select" id="sortSelect">
+            <option value="featured">✨ Saralash: Tavsiya etilgan</option>
+            <option value="price-asc">💵 Narx: Arzonroq</option>
+            <option value="price-desc">💎 Narx: Qimmatroq</option>
+            <option value="rating">⭐ Yuqori reyting</option>
+          </select>
+        </div>
+
+        <!-- Categories Filters -->
+        <div class="category-pills">
+          <button class="cat-pill active" data-cat="all">
+            <span data-i18n="cat_all">Barchasi</span>
+          </button>
+          <button class="cat-pill" data-cat="hot">
+            <span data-i18n="cat_hot">Issiq kofelar</span>
+          </button>
+          <button class="cat-pill" data-cat="cold">
+            <span data-i18n="cat_cold">Sovuq kofelar</span>
+          </button>
+          <button class="cat-pill" data-cat="special">
+            <span data-i18n="cat_special">Mualliflik</span>
+          </button>
+          <button class="cat-pill" data-cat="dessert">
+            <span data-i18n="cat_desserts">Shirinliklar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MENU GRID
+       ========================================================================== -->
+  <main class="menu-main">
+    <div class="container">
+      <div class="results-count-bar">
+        <span id="resultsCount">12 ta mahsulot ko'rsatilmoqda</span>
+      </div>
+
+      <div class="products-grid" id="menuProductsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-badge">
+              <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+            </div>
+            <span>LUNO<small style="font-size:0.55em; color:var(--accent); font-family:var(--font-body); font-weight:700; margin-left:4px;">COFFEE</small></span>
+          </a>
+          <p data-i18n="footer_brand_desc">
+            Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning xizmatingizdamiz.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav">Sahifalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav_home">Bosh sahifa</a></li>
+            <li><a href="menu.html" data-i18n="nav_menu">Menyu</a></li>
+            <li><a href="favorites.html" data-i18n="nav_favorites">Sevimlilar</a></li>
+            <li><a href="cart.html" data-i18n="nav_cart">Savat</a></li>
+            <li><a href="about.html" data-i18n="nav_about">Biz haqimizda</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_hours">Ish Vaqti</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">Dush - Juma: 08:00 - 23:00</li>
+            <li style="color:var(--text-secondary);">Shanba - Yak: 09:00 - 00:00</li>
+            <li style="color:var(--accent); font-weight:700;">Yetkazib berish: 24/7</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact">Manzil & Aloqa</h4>
+          <ul class="footer-links">
+            <li style="color:var(--text-secondary);">📍 Toshkent sh., Amir Temur shoh ko'chasi, 42</li>
+            <li><a href="tel:+998712001122">📞 +998 (71) 200-11-22</a></li>
+            <li><a href="https://t.me/gooootosholbot" target="_blank" rel="noopener">✈️ Telegram Bot: @gooootosholbot</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 LUNO COFFEE. Barcha huquqlar himoyalangan.</p>
+        <p>Created for GitHub, Vercel & Netlify Deployment</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       FULL 12 PRODUCTS CATALOG
+       ========================================================================== */
+    const ALL_PRODUCTS = [
+      {
+        id: 'prod-1',
+        category: 'hot',
+        price: 34000,
+        rating: 4.9,
+        reviews: 142,
+        badge: 'Bestseller',
+        image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Caramel Macchiato',
+          ru: 'Карамельный Маккиато',
+          en: 'Caramel Macchiato'
+        },
+        desc: {
+          uz: 'Espresso, qovurilgan karamel siropi, mayin ko\'pirtirilgan sut va vanil.',
+          ru: 'Эспрессо, карамельный сироп, взбитое молоко и нежная ваниль.',
+          en: 'Rich espresso with vanilla syrup, steamed milk, and buttery caramel drizzle.'
+        }
+      },
+      {
+        id: 'prod-2',
+        category: 'cold',
+        price: 36000,
+        rating: 5.0,
+        reviews: 215,
+        badge: 'Top Tanlov',
+        image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Spanish Iced Latte',
+          ru: 'Испанский Айс Латте',
+          en: 'Spanish Iced Latte'
+        },
+        desc: {
+          uz: 'Kondensirlangan sut, qo\'shaloq espresso, sovuq sut va muz bo\'laklari bilan.',
+          ru: 'Сгущенное молоко, двойной шот эспрессо, холодное молоко со льдом.',
+          en: 'Sweetened condensed milk, double shot of espresso over chilled milk and ice.'
+        }
+      },
+      {
+        id: 'prod-3',
+        category: 'hot',
+        price: 22000,
+        rating: 4.8,
+        reviews: 95,
+        badge: 'Klassika',
+        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Double Espresso Roast',
+          ru: 'Двойной Эспрессо',
+          en: 'Double Espresso Roast'
+        },
+        desc: {
+          uz: '100% Efiopiya Arabikasi, qalin kremali boy shokolad va sitrus ta\'mli.',
+          ru: '100% Эфиопская арабика с густой пенкой crema и нотками шоколада.',
+          en: '100% Ethiopian single-origin Arabica with thick crema and citrus notes.'
+        }
+      },
+      {
+        id: 'prod-4',
+        category: 'special',
+        price: 42000,
+        rating: 4.9,
+        reviews: 184,
+        badge: 'Mualliflik',
+        image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Pistachio Velvet Latte',
+          ru: 'Фисташковый Бархатный Латте',
+          en: 'Pistachio Velvet Latte'
+        },
+        desc: {
+          uz: 'Tabiiy pista pastasi, ipakdek mayin sut, espresso va maydalangan xandon pista.',
+          ru: 'Натуральная фисташковая паста, шелковистое молоко, эспрессо и фисташки.',
+          en: 'Artisan pistachio cream, silky micro-foam milk, espresso and crushed pistachios.'
+        }
+      },
+      {
+        id: 'prod-5',
+        category: 'hot',
+        price: 28000,
+        rating: 4.9,
+        reviews: 340,
+        badge: 'Mashhur',
+        image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Classic Cappuccino',
+          ru: 'Классический Капучино',
+          en: 'Classic Cappuccino'
+        },
+        desc: {
+          uz: 'Klassik italiycha uslub: teng nisbatdagi espresso, issiq sut va qalin sut ko\'pigi.',
+          ru: 'Итальянская классика: идеальный баланс эспрессо, горячего молока и бархатной пенки.',
+          en: 'Classic Italian style: balanced espresso, steamed milk, and rich velvety foam.'
+        }
+      },
+      {
+        id: 'prod-6',
+        category: 'cold',
+        price: 35000,
+        rating: 4.8,
+        reviews: 115,
+        badge: 'Sovuq Damlash',
+        image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Cold Brew Vanilla Foam',
+          ru: 'Колд Брю с Ванильной Пенкой',
+          en: 'Cold Brew Vanilla Foam'
+        },
+        desc: {
+          uz: '18 soat davomida sovuq damlangan kofe, Madagaskar vanilli sovuq krem bilan.',
+          ru: 'Холодное настаивание 18 часов со сладкой холодной пенкой из натуральной ванили.',
+          en: '18-hour slow steeped cold brew topped with Madagascar vanilla sweet cream cold foam.'
+        }
+      },
+      {
+        id: 'prod-7',
+        category: 'hot',
+        price: 30000,
+        rating: 4.9,
+        reviews: 160,
+        badge: 'Yangi',
+        image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Flat White Velvet',
+          ru: 'Флэт Уайт Бархатный',
+          en: 'Flat White Velvet'
+        },
+        desc: {
+          uz: 'Ikki hissa ristretto va nozik mayin ko\'pirtirilgan sut (Avstraliya uslubi).',
+          ru: 'Двойной ристретто и нежнейшая мелкопористая молочная пенка по-австралийски.',
+          en: 'Double shot of sweet ristretto blended with micro-foamed whole milk.'
+        }
+      },
+      {
+        id: 'prod-8',
+        category: 'cold',
+        price: 38000,
+        rating: 4.7,
+        reviews: 88,
+        badge: 'Shokoladli',
+        image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Hazelnut Mocha Frappe',
+          ru: 'Ореховый Мокка Фраппе',
+          en: 'Hazelnut Mocha Frappe'
+        },
+        desc: {
+          uz: 'Muzdek frappe, Belgiya shokoladi, funduq yong\'og\'i va qaymoqli krem.',
+          ru: 'Освежающий фраппе с бельгийским шоколадом, фундуком и взбитыми сливками.',
+          en: 'Chilled blended frappe with Belgian chocolate, roasted hazelnut and whipped cream.'
+        }
+      },
+      {
+        id: 'prod-9',
+        category: 'dessert',
+        price: 45000,
+        rating: 5.0,
+        reviews: 420,
+        badge: 'Bestseller',
+        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'San Sebastian Cheesecake',
+          ru: 'Чизкейк Сан-Себастьян',
+          en: 'San Sebastian Cheesecake'
+        },
+        desc: {
+          uz: 'Ispancha kuydirilgan chizkeyk, kremli yumshoq markaz va issiq shokolad ganashi.',
+          ru: 'Испанский обожженный чизкейк с нежнейшим кремовым центром и горячим шоколадом.',
+          en: 'Basque burnt cheesecake with a creamy melt-in-mouth center and dark chocolate ganache.'
+        }
+      },
+      {
+        id: 'prod-10',
+        category: 'dessert',
+        price: 26000,
+        rating: 4.8,
+        reviews: 215,
+        badge: 'Fransuzcha',
+        image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Almond Croissant',
+          ru: 'Миндальный Круассан',
+          en: 'Almond Croissant'
+        },
+        desc: {
+          uz: 'Fransuzcha qatlama xamir, nozik franjipan bodom kremi va qovurilgan bodom parraklari.',
+          ru: 'Французский слоеный круассан с миндальным кремом франжипан и лепестками миндаля.',
+          en: 'Buttery French croissant filled with rich almond frangipane and toasted sliced almonds.'
+        }
+      },
+      {
+        id: 'prod-11',
+        category: 'dessert',
+        price: 39000,
+        rating: 4.9,
+        reviews: 178,
+        badge: 'Italyancha',
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Tiramisu Tradizionale',
+          ru: 'Классический Тирамису',
+          en: 'Tiramisu Tradizionale'
+        },
+        desc: {
+          uz: 'Savoyardi pechenyesi, espresso va maskarpone kremidan tayyorlangan an\'anaviy desert.',
+          ru: 'Классический итальянский десерт с савоярди, пропитанными эспрессо, и сыром маскарпоне.',
+          en: 'Traditional Italian dessert with espresso-soaked ladyfingers and whipped mascarpone cream.'
+        }
+      },
+      {
+        id: 'prod-12',
+        category: 'special',
+        price: 37000,
+        rating: 4.8,
+        reviews: 132,
+        badge: 'Kioto Matchasi',
+        image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=800&q=80',
+        name: {
+          uz: 'Ceremonial Matcha Latte',
+          ru: 'Церемониальный Матча Латте',
+          en: 'Ceremonial Matcha Latte'
+        },
+        desc: {
+          uz: 'Kiotodan keltirilgan oliy navli yashil matcha choyi, suli suti va vanil.',
+          ru: 'Церемониальный зеленый чай матча из Киото, овсяное молоко и нотка ванили.',
+          en: 'Ceremonial grade green matcha from Kyoto whisked with oat milk and subtle vanilla.'
+        }
+      }
+    ];
+
+    /* ==========================================================================
+       TRANSLATIONS
+       ========================================================================== */
+    const TRANSLATIONS = {
+      uz: {
+        nav_home: "Bosh sahifa",
+        nav_menu: "Menyu",
+        nav_favorites: "Sevimlilar",
+        nav_cart: "Savat",
+        nav_about: "Biz haqimizda",
+        menu_title: "Bizning Maxsus Menyuyimiz",
+        menu_subtitle: "Har bir ichimlik saralangan 100% Arabika donachalaridan tayyorlanadi va yangi pishiriqlar bilan taqdim etiladi.",
+        search_placeholder: "Kofe yoki shirinlik qidiring...",
+        cat_all: "Barchasi",
+        cat_hot: "Issiq kofelar",
+        cat_cold: "Sovuq kofelar",
+        cat_special: "Mualliflik",
+        cat_desserts: "Shirinliklar",
+        add_to_cart: "Savatga",
+        no_results_title: "Hech narsa topilmadi",
+        no_results_desc: "Qidiruv so'rovingizga mos mahsulot topilmadi. Qidiruvni tozalab ko'ring.",
+        btn_reset_filter: "Filtrlarni tozalash",
+        footer_brand_desc: "Har kuni yangi qovuriladigan specialty kofe, professional baristalar va shinam atmosfera bilan sizning xizmatingizdamiz.",
+        footer_nav: "Sahifalar",
+        footer_hours: "Ish Vaqti",
+        footer_contact: "Manzil & Aloqa",
+        toast_added_cart: "Savatga qo'shildi!",
+        toast_added_fav: "Sevimlilarga qo'shildi!",
+        toast_removed_fav: "Sevimlilardan o'chirildi"
+      },
+      ru: {
+        nav_home: "Главная",
+        nav_menu: "Меню",
+        nav_favorites: "Избранное",
+        nav_cart: "Корзина",
+        nav_about: "О нас",
+        menu_title: "Наше Фирменное Меню",
+        menu_subtitle: "Каждый напиток готовится из 100% арабики свежей обжарки и подается со свежей выпечкой.",
+        search_placeholder: "Поиск кофе или десерта...",
+        cat_all: "Все",
+        cat_hot: "Горячий кофе",
+        cat_cold: "Холодный кофе",
+        cat_special: "Авторский кофе",
+        cat_desserts: "Десерты",
+        add_to_cart: "В корзину",
+        no_results_title: "Ничего не найдено",
+        no_results_desc: "По вашему запросу товаров не найдено. Попробуйте сбросить фильтры.",
+        btn_reset_filter: "Сбросить фильтры",
+        footer_brand_desc: "Свежая обжарка каждый день, авторские напитки и теплая атмосфера для ценителей настоящего кофе.",
+        footer_nav: "Навигация",
+        footer_hours: "Часы Работы",
+        footer_contact: "Контакты & Адрес",
+        toast_added_cart: "Добавлено в корзину!",
+        toast_added_fav: "Добавлено в избранное!",
+        toast_removed_fav: "Удалено из избранного"
+      },
+      en: {
+        nav_home: "Home",
+        nav_menu: "Menu",
+        nav_favorites: "Favorites",
+        nav_cart: "Cart",
+        nav_about: "About Us",
+        menu_title: "Our Specialty Menu",
+        menu_subtitle: "Handcrafted with 100% freshly roasted Arabica beans, accompanied by artisanal baked treats.",
+        search_placeholder: "Search coffee or dessert...",
+        cat_all: "All",
+        cat_hot: "Hot Coffee",
+        cat_cold: "Cold Coffee",
+        cat_special: "Signature",
+        cat_desserts: "Desserts & Bakery",
+        add_to_cart: "Add to Cart",
+        no_results_title: "No products found",
+        no_results_desc: "We couldn't find anything matching your search. Try resetting your search.",
+        btn_reset_filter: "Reset Filters",
+        footer_brand_desc: "Small-batch daily roasted specialty coffee, artisan drinks, and a warm sanctuary for true coffee lovers.",
+        footer_nav: "Navigation",
+        footer_hours: "Opening Hours",
+        footer_contact: "Contact & Location",
+        toast_added_cart: "Added to cart!",
+        toast_added_fav: "Added to favorites!",
+        toast_removed_fav: "Removed from favorites"
+      }
+    };
+
+    /* ==========================================================================
+       STORAGE
+       ========================================================================== */
+    const Storage = {
+      getTheme() { return localStorage.getItem('coffee_theme') || 'dark'; },
+      setTheme(t) { localStorage.setItem('coffee_theme', t); },
+      getLang() { return localStorage.getItem('coffee_lang') || 'uz'; },
+      setLang(l) { localStorage.setItem('coffee_lang', l); },
+      getCart() {
+        try {
+          const val = JSON.parse(localStorage.getItem('coffee_cart'));
+          return Array.isArray(val) ? val : [];
+        } catch(e) { return []; }
+      },
+      setCart(c) { localStorage.setItem('coffee_cart', JSON.stringify(c)); },
+      getFavorites() {
+        try {
+          const val = JSON.parse(localStorage.getItem('coffee_favorites'));
+          return Array.isArray(val) ? val : [];
+        } catch(e) { return []; }
+      },
+      setFavorites(f) { localStorage.setItem('coffee_favorites', JSON.stringify(f)); }
+    };
+
+    /* ==========================================================================
+       MENU APP LOGIC
+       ========================================================================== */
+    const MenuApp = {
+      lang: 'uz',
+      theme: 'dark',
+      currentCategory: 'all',
+      searchQuery: '',
+      sortBy: 'featured',
+
+      init() {
+        try {
+          this.setupEventListeners();
+        } catch(e) {
+          console.error("Setup listeners error:", e);
+        }
+
+        try {
+          this.lang = Storage.getLang();
+          this.theme = Storage.getTheme();
+
+          // Check URL params for category (e.g. menu.html?cat=cold)
+          const urlParams = new URLSearchParams(window.location.search);
+          const catParam = urlParams.get('cat');
+          if (catParam) {
+            this.currentCategory = catParam;
+          }
+
+          this.applyTheme(this.theme);
+          this.applyLang(this.lang);
+          this.updateBadges();
+          this.updateCategoryPillsUI();
+          this.renderMenu();
+        } catch(e) {
+          console.error("Menu init error:", e);
+        }
+      },
+
+      applyTheme(theme) {
+        this.theme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        Storage.setTheme(theme);
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+          icon.innerHTML = theme === 'light'
+            ? '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>'
+            : '<path d="M12.3 2a10 10 0 0 0-1.9 19.8 10 10 0 0 0 11.5-11.5c-4.4.9-8.4-2.4-9.6-8.3z"/>';
+        }
+      },
+
+      toggleTheme() {
+        this.applyTheme(this.theme === 'dark' ? 'light' : 'dark');
+      },
+
+      applyLang(lang) {
+        this.lang = lang;
+        Storage.setLang(lang);
+        document.documentElement.lang = lang;
+        document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+
+        document.querySelectorAll('.lang-option').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        const dict = TRANSLATIONS[lang] || TRANSLATIONS.uz;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.innerHTML = dict[key];
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput && dict.search_placeholder) {
+          searchInput.placeholder = dict.search_placeholder;
+        }
+
+        this.renderMenu();
+      },
+
+      updateBadges() {
+        const cart = Storage.getCart();
+        const totalCartItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+        const cartBadge = document.getElementById('cartBadge');
+        if (cartBadge) cartBadge.textContent = totalCartItems;
+
+        const favs = Storage.getFavorites();
+        const favBadge = document.getElementById('favBadge');
+        if (favBadge) favBadge.textContent = favs.length;
+      },
+
+      updateCategoryPillsUI() {
+        document.querySelectorAll('.cat-pill').forEach(pill => {
+          pill.classList.toggle('active', pill.dataset.cat === this.currentCategory);
+        });
+      },
+
+      getFilteredProducts() {
+        let list = [...ALL_PRODUCTS];
+
+        // Filter by category
+        if (this.currentCategory !== 'all') {
+          list = list.filter(p => p.category === this.currentCategory);
+        }
+
+        // Filter by search query
+        if (this.searchQuery.trim() !== '') {
+          const q = this.searchQuery.toLowerCase().trim();
+          list = list.filter(p => {
+            const nameUz = (p.name.uz || '').toLowerCase();
+            const nameRu = (p.name.ru || '').toLowerCase();
+            const nameEn = (p.name.en || '').toLowerCase();
+            const descUz = (p.desc.uz || '').toLowerCase();
+            return nameUz.includes(q) || nameRu.includes(q) || nameEn.includes(q) || descUz.includes(q);
+          });
+        }
+
+        // Sorting
+        if (this.sortBy === 'price-asc') {
+          list.sort((a, b) => a.price - b.price);
+        } else if (this.sortBy === 'price-desc') {
+          list.sort((a, b) => b.price - a.price);
+        } else if (this.sortBy === 'rating') {
+          list.sort((a, b) => b.rating - a.rating);
+        }
+
+        return list;
+      },
+
+      renderMenu() {
+        const container = document.getElementById('menuProductsGrid');
+        const countLabel = document.getElementById('resultsCount');
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        const filtered = this.getFilteredProducts();
+        const favs = Storage.getFavorites();
+
+        if (countLabel) {
+          countLabel.textContent = `${filtered.length} ta mahsulot`;
+        }
+
+        if (filtered.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/></svg>
+              <h3>${dict.no_results_title}</h3>
+              <p>${dict.no_results_desc}</p>
+              <button class="btn-reset" onclick="MenuApp.resetFilters()">${dict.btn_reset_filter}</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = filtered.map(p => {
+          const isFav = favs.includes(p.id);
+          const name = p.name[this.lang] || p.name.uz;
+          const desc = p.desc[this.lang] || p.desc.uz;
+          const formattedPrice = p.price.toLocaleString('uz-UZ');
+
+          return `
+            <div class="product-card" data-id="${p.id}">
+              <div class="product-img-wrapper">
+                <img src="${p.image}" alt="${name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80';">
+                <span class="product-badge">${p.badge}</span>
+                <button class="fav-toggle-btn ${isFav ? 'active' : ''}" onclick="MenuApp.toggleFavorite('${p.id}')" title="Sevimlilarga saqlash">
+                  <svg viewBox="0 0 24 24"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+                </button>
+              </div>
+              <div class="product-content">
+                <div class="product-rating">
+                  <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                  <span>${p.rating} (${p.reviews})</span>
+                </div>
+                <h3 class="product-title">${name}</h3>
+                <p class="product-desc">${desc}</p>
+                <div class="product-footer">
+                  <div class="product-price">${formattedPrice} <small>so'm</small></div>
+                  <button class="add-cart-btn" onclick="MenuApp.addToCart('${p.id}')">
+                    <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+                    <span>${dict.add_to_cart || "Savatga"}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+
+      addToCart(productId) {
+        let cart = Storage.getCart();
+        const existing = cart.find(item => item.id === productId);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ id: productId, qty: 1 });
+        }
+        Storage.setCart(cart);
+        this.updateBadges();
+
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        this.showToast(dict.toast_added_cart, 'success');
+      },
+
+      toggleFavorite(productId) {
+        let favs = Storage.getFavorites();
+        const dict = TRANSLATIONS[this.lang] || TRANSLATIONS.uz;
+        if (favs.includes(productId)) {
+          favs = favs.filter(id => id !== productId);
+          this.showToast(dict.toast_removed_fav, 'info');
+        } else {
+          favs.push(productId);
+          this.showToast(dict.toast_added_fav, 'success');
+        }
+        Storage.setFavorites(favs);
+        this.updateBadges();
+        this.renderMenu();
+      },
+
+      resetFilters() {
+        this.searchQuery = '';
+        this.currentCategory = 'all';
+        this.sortBy = 'featured';
+        document.getElementById('searchInput').value = '';
+        document.getElementById('sortSelect').value = 'featured';
+        this.updateCategoryPillsUI();
+        this.renderMenu();
+      },
+
+      showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <svg viewBox="0 0 24 24" style="fill:currentColor;"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/></svg>
+          <span>${message}</span>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.animation = 'toastOut 0.3s forwards ease';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      },
+
+      setupEventListeners() {
+        document.getElementById('themeToggleBtn').addEventListener('click', () => this.toggleTheme());
+
+        // Language Dropdown
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        langBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langDropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => langDropdown.classList.remove('open'));
+        document.querySelectorAll('.lang-option').forEach(opt => {
+          opt.addEventListener('click', () => {
+            this.applyLang(opt.dataset.lang);
+            langDropdown.classList.remove('open');
+          });
+        });
+
+        // Mobile drawer
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        mobileBtn.addEventListener('click', () => mobileDrawer.classList.toggle('open'));
+
+        // Category pills
+        document.querySelectorAll('.cat-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            this.currentCategory = pill.dataset.cat;
+            this.updateCategoryPillsUI();
+            this.renderMenu();
+          });
+        });
+
+        // Live Search Input
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+          this.searchQuery = e.target.value;
+          this.renderMenu();
+        });
+
+        // Sort Select
+        const sortSelect = document.getElementById('sortSelect');
+        sortSelect.addEventListener('change', (e) => {
+          this.sortBy = e.target.value;
+          this.renderMenu();
+        });
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => MenuApp.init());
+  </script>
+</body>
+</html>
